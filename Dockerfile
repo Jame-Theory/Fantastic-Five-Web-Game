@@ -1,18 +1,13 @@
-FROM python:3.8
+# server/Dockerfile
+FROM python:3.9
+ 
+WORKDIR /app
 
-ENV HOME /root
-WORKDIR /root
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
-COPY ./requirements.txt ./requirements.txt
-COPY ./server.py ./server.py
-COPY ./public ./public
-COPY ./util ./util
+COPY . .
 
-RUN pip3 install -r requirements.txt
+EXPOSE 5000
 
-EXPOSE 8000
-
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
-
-CMD /wait && python3 -u server.py
+CMD ["python", "app.py"]
