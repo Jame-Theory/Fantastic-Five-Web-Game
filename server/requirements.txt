@@ -4,3 +4,4 @@ flask-socketio
 pymongo
 bcrypt
 eventlet  # For better WebSocket performance
+db

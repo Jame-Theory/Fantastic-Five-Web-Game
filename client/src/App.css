@@ -1,6 +1,3 @@
-/* client/src/App.css */
-/* file- prajwal*/
-
 .App {
   text-align: center;
   max-width: 800px;
@@ -12,19 +9,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
 }
 
-.auth-container {
-  max-width: 400px;
-  margin: 0 auto;
+.App-header a {
+  color: #61dafb;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
-.auth-form {
+.auth-form, .game-container {
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 8px;
-  margin-bottom: 20px;
+  max-width: 400px;
+  margin: 40px auto;
 }
 
 .auth-form h2 {
@@ -54,7 +55,18 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
   font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+  background-color: #45a049;
+}
+
+.auth-form button.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .error {
@@ -62,6 +74,40 @@
   margin-bottom: 15px;
 }
 
-.game-container {
-  text-align: center;
+.password-requirements {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.password-requirements ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 5px;
+}
+
+.password-requirements li {
+  margin: 3px 0;
+  display: flex;
+  align-items: center;
+}
+
+.password-requirements li:before {
+  content: "•";
+  margin-right: 8px;
+}
+
+.password-requirements li.valid {
+  color: green;
+}
+
+.password-requirements li.valid:before {
+  content: "✓";
+}
+
+.password-requirements li.invalid {
+  color: red;
+}
+
+.password-requirements li.invalid:before {
+  content: "✗";
 }

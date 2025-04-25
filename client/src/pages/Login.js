@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function Signup({ setUser }) {
+function LoginPage({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      await axios.post('http://localhost:5000/api/auth/signup', { username, password });
-      const loginResponse = await axios.post('http://localhost:5000/api/auth/login', { username, password });
-      setUser({ username: loginResponse.data.username });
+      const res = await axios.post('/api/auth/login', { username, password });
+      setUser({ username: res.data.username });
+      navigate('/play'); // Redirect to play page after successful login
     } catch (err) {
-      setError(err.response?.data?.error || 'Signup failed');
+      setError(err.response?.data?.error || 'Login failed');
     }
   };
 
   return (
     <div className="auth-form">
-      <h2>Sign Up</h2>
+      <h2>Login</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -32,10 +34,10 @@ function Signup({ setUser }) {
           <label>Password</label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 }
 
-export default Signup;
+export default LoginPage;

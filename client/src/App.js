@@ -1,55 +1,59 @@
-// client/src/App.js
-import { useState } from 'react';
-import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup';
-import GameCanvas from './components/Game/GameCanvas';
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate
+} from 'react-router-dom';
+import SignupPage from './pages/Register';
+import LoginPage from './pages/Login';
+import PlayPage from './pages/Play';               // ← new
 import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [showLogin, setShowLogin] = useState(true);
-
-  const toggleForm = () => {
-    setShowLogin(!showLogin);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-  };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <Router>
+      <nav className="App-header">
         <h1>Multiplayer Grid Game</h1>
-        {user && <button onClick={handleLogout}>Logout</button>}
-      </header>
-
-      <main>
-        {!user ? (
-          <div className="auth-container">
-            {showLogin ? (
-              <>
-                <Login setUser={setUser} />
-                <p>
-                  Don't have an account?{' '}
-                  <button onClick={toggleForm}>Sign Up</button>
-                </p>
-              </>
-            ) : (
-              <>
-                <Signup setUser={setUser} />
-                <p>
-                  Already have an account?{' '}
-                  <button onClick={toggleForm}>Login</button>
-                </p>
-              </>
-            )}
-          </div>
+        {user ? (
+          <button onClick={() => setUser(null)}>Logout</button>
         ) : (
-          <GameCanvas username={user.username} />
+          <>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/login">Login</Link>
+          </>
         )}
+      </nav>
+      <main className="App">
+        <Routes>
+          <Route
+            path="/signup"
+            element={<SignupPage />}
+          />
+          <Route
+            path="/login"
+            element={<LoginPage setUser={setUser} />}
+          />
+          <Route
+            path="/play"
+            element={
+              user
+                ? <PlayPage username={user.username} />
+                : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Navigate to={user ? "/play" : "/login"} replace />
+            }
+          />
+        </Routes>
       </main>
-    </div>
+    </Router>
   );
 }
 

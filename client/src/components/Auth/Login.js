@@ -1,5 +1,4 @@
-// client/src/components/Auth/Login.js
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function Login({ setUser }) {
@@ -12,11 +11,7 @@ function Login({ setUser }) {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        username,
-        password
-      });
-
+      const response = await axios.post('/api/auth/login', { username, password });
       setUser({ username: response.data.username });
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
@@ -33,7 +28,7 @@ function Login({ setUser }) {
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </div>
@@ -42,7 +37,7 @@ function Login({ setUser }) {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </div>
