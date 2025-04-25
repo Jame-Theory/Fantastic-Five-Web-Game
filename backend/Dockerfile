@@ -1,18 +1,11 @@
-FROM python:3.8
+FROM python:3.11-slim
 
-ENV HOME /root
-WORKDIR /root
+WORKDIR /app
 
-COPY ./requirements.txt ./requirements.txt
-COPY ./server.py ./server.py
-COPY ./public ./public
-COPY ./util ./util
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+RUN apt update && apt install -y curl
 
-RUN pip3 install -r requirements.txt
+COPY src/ ./src
 
-EXPOSE 8000
-
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
-
-CMD /wait && python3 -u server.py
+CMD ["python", "src/app.py"]
