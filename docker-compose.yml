@@ -19,6 +19,8 @@ services:
       - MONGO_URI=mongodb://mongo:27017/fantastic_game
     expose:
       - "5000"
+    volumes:
+      - ./logs:/logs
 
   mongo:
     image: mongo:latest
@@ -26,6 +28,8 @@ services:
     restart: always
     volumes:
       - mongo-data:/data/db
+    ports:
+      - "27017:27017"
 
   nginx:
     image: nginx:latest
