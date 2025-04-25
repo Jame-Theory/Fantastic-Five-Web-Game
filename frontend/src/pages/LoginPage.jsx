@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "./AuthProvider";
+import { useState } from "react";
+import { useAuth } from "./AuthProvider.jsx"
 
 const LoginPage = () => {
   const [input, setInput] = useState({
@@ -8,7 +8,7 @@ const LoginPage = () => {
   });
 
   const [error, setError] = useState("");
-  const { loginAction } = useContext(AuthContext);
+  const { loginAction } = useAuth();
 
   const handleSubmitEvent = (e) => {
     e.preventDefault();

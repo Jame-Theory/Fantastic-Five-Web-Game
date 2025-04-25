@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "./AuthProvider";
+import { useState } from "react";
+import { useAuth } from "./AuthProvider.jsx"
 
 const RegisterPage = () => {
   const [input, setInput] = useState({
@@ -9,17 +9,17 @@ const RegisterPage = () => {
 
   const [error, setError] = useState("");
 
-  const { loginAction } = useContext(AuthContext);
+  const { loginAction } = useAuth();
 
   const handleSubmitEvent = async (e) => {
     e.preventDefault();
-    if (input.username !== "" && input.password !== "") {
+    if (input.username === "" || input.password === "") {
         setError("Username and password cannot be blank.");
         return;
     }
     
     try {
-        const response = await fetch("/auth/register", {
+        const response = await fetch("/api/auth/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

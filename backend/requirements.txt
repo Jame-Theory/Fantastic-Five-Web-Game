@@ -3,3 +3,4 @@ pymongo
 flask-sqlalchemy
 bcrypt
 flask-cors
+gunicorn

@@ -16,13 +16,15 @@ from database import player_collection
 
 from flask import render_template
 
+from flask_cors import CORS
+
 import uuid
 
 import secrets
 import hashlib
 import bcrypt
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -152,6 +154,13 @@ def auth_status():
 
 app = Flask(__name__)
 app.register_blueprint(bp)
+
+app.config['SECRET_KEY'] = 'secret!'
+CORS(app,resources={r"/*":{"origins":"*"}})
+
+@app.route("/api/ping")
+def ping():
+    return jsonify({"msg": "pong"})
 
 
 if __name__ == '__main__':

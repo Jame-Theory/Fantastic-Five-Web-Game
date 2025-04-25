@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.game-board {
+  image-rendering: pixelated;
+  margin: 20px auto;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.tile {
+  box-shadow: inset 0 0 0 1px #222;
+}

@@ -1,10 +1,84 @@
+version: "3.8"
+
 services:
-  mongo:
-    image: mongo:4.2.5
-  myapp:
-    build: .
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    restart: always
+    depends_on:
+      - mongo
     environment:
-      WAIT_HOSTS: mongo:27017
-      DOCKER_DB: true
+      - DOCKER_DB=true
+      - MONGO_URI=mongodb://mongo:27017/fantastic_game
+    expose:
+      - "5000"
+    volumes:
+      - ./logs:/logs
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    volumes:
+      - mongo-data:/data/db
     ports:
-      - '8080:8080'
+      - "27017:27017"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html:ro
+      - ./nginx/zzz_override.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  mongo-data:
+
+
+
+
+
+
+
+
+
+
+# services:
+#   mongo:
+#     image: mongo:4.2.5
+#   api:
+#     build:
+#       context: ./server
+#       dockerfile: Dockerfile.api
+#     image: react-flask-app-api
+#     environment:
+#       WAIT_HOSTS: mongo:27017
+#       DOCKER_DB: true
+#     ports:
+#       - '5000:5000'
+  
+
+
+
+
+
+# services:
+#   mongo:
+#     image: mongo:4.2.5
+#   myapp:
+#     build: .
+#     environment:
+#       WAIT_HOSTS: mongo:27017
+#       DOCKER_DB: true
+#     ports:
+#       - '8080:8080'

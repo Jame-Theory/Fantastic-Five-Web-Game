@@ -2,9 +2,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
-//import AuthProvider from './pages/AuthProvider.js';
+import AuthProvider from './pages/AuthProvider.jsx';
+import GamePage from './pages/GamePage.jsx'
 
-import AuthProvider from "./hooks/AuthProvider";
+// import AuthProvider from "./hooks/AuthProvider";
 
 function App() {
   return (
