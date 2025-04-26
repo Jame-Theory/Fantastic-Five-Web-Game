@@ -28,6 +28,8 @@ function GameCanvas({ username }) {
 
   // Join game when socket is ready
   useEffect(() => {
+    console.log("🔗 setting up socket listeners, socket:", socket, "username:", username);
+
     if (socket && username) {
       socket.on('connect', () => {
         console.log('Connected to WebSocket server');
@@ -128,6 +130,7 @@ function GameCanvas({ username }) {
 
   // Draw the game
   useEffect(() => {
+    console.log('🎨 drawing canvas: my position=', position, 'all players=', players);
     const canvas = canvasRef.current;
     if (!canvas) return;
 

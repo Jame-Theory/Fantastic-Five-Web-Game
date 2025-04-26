@@ -1,7 +1,7 @@
 # backend/app.py
 from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_socketio import SocketIO
+# from flask_socketio import SocketIO
 from db import db
 
 import logging
@@ -12,8 +12,9 @@ from datetime import datetime
 # app = Flask(__name__)
 # CORS(app)
 
+from extensions import socketio
 # Create but don't initialize the extensions yet
-socketio = SocketIO()
+# socketio = SocketIO()
 
 def create_app():
     app = Flask(__name__)
