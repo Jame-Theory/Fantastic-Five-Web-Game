@@ -16,7 +16,29 @@ function GameCanvas({ username }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const [isConnected, setIsConnected] = useState(false);
+
+  const [grid, setGrid] = useState({});
+  // key = 'x,y' → { username, color }
+  const [leaderboard, setLeaderboard] = useState([]);
+
   const gridSize = 20;
+
+  // helper function for leaderboard
+  function recomputeLeaderboard(gridMap) {
+    const counts = {};
+    Object.values(gridMap).forEach(({ username }) => {
+      counts[username] = (counts[username] || 0) + 1;
+    });
+    // include disconnected players too if zero
+    Object.keys(players).concat(username).forEach(u => {
+      if (!(u in counts)) counts[u] = 0;
+    });
+    // turn into sorted array
+    const board = Object.entries(counts)
+      .map(([user, count]) => ({ user, count }))
+      .sort((a,b) => b.count - a.count);
+    setLeaderboard(board);
+  }
 
   // Initialize socket connection
   useEffect(() => {
@@ -87,11 +109,6 @@ function GameCanvas({ username }) {
           [data.username]: { position: data.position, color: data.color }
         }));
       }
-
-      // setPlayers(prev => ({
-      //   ...prev,
-      //   [data.username]: { position: data.position, color: data.color }
-      // }));
     };
 
     const onGameState = (data) => {
@@ -111,6 +128,27 @@ function GameCanvas({ username }) {
       setPosition(data.position);
     };
 
+    const onGridState = ({ cells }) => {
+      // build the grid map
+      const g = {};
+      cells.forEach(c => {
+        g[`${c.x},${c.y}`] = { username: c.username, color: c.color };
+      });
+      setGrid(g);
+      recomputeLeaderboard(g);
+    };
+
+    const onCellPainted = (c) => {
+      setGrid(prev => {
+      const g = {
+        ...prev,
+        [`${c.x},${c.y}`]: { username:c.username, color:c.color }
+      };
+      recomputeLeaderboard(g);
+      return g;
+    });
+    }
+
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
     socket.on('connect_error', onConnectError);
@@ -119,72 +157,8 @@ function GameCanvas({ username }) {
     socket.on('player_moved', onPlayerMoved);
     socket.on('game_state', onGameState);
     socket.on('player_data', onPlayerData);
-    // if (socket && username) {
-    //   socket.on('connect', () => {
-    //     console.log('Connected to WebSocket server');
-    //     setIsConnected(true);
-    //     socket.emit('join_game', { username, room: 'main' });
-    //   });
-    //
-    //   socket.on('disconnect', () => {
-    //     console.log('Disconnected from WebSocket server');
-    //     setIsConnected(false);
-    //   });
-    //
-    //   socket.on('connect_error', (error) => {
-    //     console.error('Connection error:', error);
-    //     setIsConnected(false);
-    //   });
-    //
-    //   socket.on('player_joined', (data) => {
-    //     console.log('Player joined:', data);
-    //     setPlayers(prev => ({
-    //       ...prev,
-    //       [data.username]: {
-    //         position: data.position,
-    //         color: data.color``
-    //       }
-    //     }));
-    //   });
-    //
-    //   socket.on('player_left', (data) => {
-    //     console.log('Player left:', data);
-    //     setPlayers(prev => {
-    //       const updated = { ...prev };
-    //       delete updated[data.username];
-    //       return updated;
-    //     });
-    //   });
-    //
-    //   socket.on('player_moved', (data) => {
-    //     console.log('Player moved:', data);
-    //     setPlayers(prev => ({
-    //       ...prev,
-    //       [data.username]: {
-    //         position: data.position,
-    //         color: data.color
-    //       }
-    //     }));
-    //   });
-    //
-    //   socket.on('game_state', (data) => {
-    //     console.log('Game state received:', data);
-    //     const newPlayers = {};
-    //     data.players.forEach(player => {
-    //       newPlayers[player.username] = {
-    //         position: player.position,
-    //         color: player.color
-    //       };
-    //     });
-    //     setPlayers(newPlayers);
-    //   });
-    //
-    //   // learn our own color & initial position
-    //   socket.on('player_data', (data) => {
-    //     setSelfColor(data.color);
-    //     setPosition(data.position);
-    //   });
-    // }
+    socket.on('grid_state', onGridState);
+    socket.on('cell_painted', onCellPainted);
 
     return () => {
       socket.off('connect', onConnect);
@@ -195,6 +169,8 @@ function GameCanvas({ username }) {
       socket.off('player_moved', onPlayerMoved);
       socket.off('game_state', onGameState);
       socket.off('player_data', onPlayerData);
+      socket.off('grid_state', onGridState);
+      socket.off('cell_painted', onCellPainted);
     };
     // return () => {
     //   if (socket) {
@@ -268,9 +244,15 @@ function GameCanvas({ username }) {
       ctx.stroke();
     }
 
+    // paint cells
+    Object.entries(grid).forEach(([key, {color}]) => {
+      const [x,y] = key.split(',').map(Number);
+      ctx.fillStyle = color;
+      ctx.fillRect(x*gridSize, y*gridSize, gridSize, gridSize);
+    });
+
     // Draw other players (in *their* color), skip self
     Object.entries(players).forEach(([name, { position: p, color }]) => {
-      // if (name === username) return;
       ctx.fillStyle = color;
       ctx.fillRect(p.x * gridSize, p.y * gridSize, gridSize, gridSize);
 
@@ -278,16 +260,6 @@ function GameCanvas({ username }) {
       ctx.font = '10px Arial';
       ctx.fillText(name, p.x * gridSize, p.y * gridSize - 5);
     });
-    // Object.entries(players).forEach(([playerName, pos]) => {
-    //   ctx.fillStyle = color;
-    //   ctx.fillRect(pos.x * gridSize, pos.y * gridSize, gridSize, gridSize);
-    //   // ctx.fillStyle = '#3498db';
-    //   // ctx.fillRect(pos.x * gridSize, pos.y * gridSize, gridSize, gridSize);
-    //
-    //   ctx.fillStyle = '#000';
-    //   ctx.font = '10px Arial';
-    //   ctx.fillText(playerName, pos.x * gridSize, (pos.y * gridSize) - 5);
-    // });
 
     // Draw current player (in our assigned color)
     // ctx.fillStyle = '#e74c3c';
@@ -301,19 +273,35 @@ function GameCanvas({ username }) {
   }, [position, players, username]);
 
   return (
-    <div className="game-container">
-      <h2>Game Canvas</h2>
-      <p>Use arrow keys to move. Other players will see you moving.</p>
+    <div className="game-container" style={{display:'flex'}}>
+      {/*<h2>Game Canvas</h2>*/}
+      {/*<p>Use arrow keys to move. Other players will see you moving.</p>*/}
       {!isConnected && (
         <p className="connection-warning">Connecting to server...</p>
       )}
-      <canvas
-        ref={canvasRef}
-        width={500}
-        height={500}
-        style={{ border: '1px solid #000' }}
-      />
+      <div>
+        <canvas
+          ref={canvasRef}
+          width={500}
+          height={500}
+          style={{ border: '1px solid #000' }}
+        />
+      </div>
+
+      <div className="leaderboard" style={{marginLeft:20, textAlign:'left'}}>
+        <h3>Leaderboard</h3>
+        <ol>
+          {leaderboard.map(({user,count}) => (
+            <li key={user}>
+              <span style={{color: players[user]?.color || selfColor || '#000'}}>
+                {user}
+              </span>: {count}
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
+
   );
 }
 

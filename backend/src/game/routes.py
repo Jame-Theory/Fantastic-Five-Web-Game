@@ -3,7 +3,6 @@ from flask import Blueprint, request
 from flask_socketio import emit, join_room, leave_room
 
 # from app import socketio
-# from backend.app import socketio
 from extensions import socketio
 
 import random
@@ -22,15 +21,18 @@ user_sids = {}
 # sid: username
 sid_to_user = {}
 
-# Keep one color per username
+# keep a record of painted cells: map “x,y” → username
+grid_owner: dict[str,str] = {}
+
+
+# Keep one color per username (defunct?)
 user_colors = {}
 
 def generate_color(username):
     """Give each username a distinct hex color (first‐seen wins)."""
     if 'color' in players.get(username, {}):
         return players[username]['color']
-    # if username in user_colors:
-    #     return user_colors[username]
+
     # simple random; you could swap in a color‐palette or HSL‐based spread
     color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
     user_colors[username] = color
@@ -62,14 +64,6 @@ def handle_disconnect():
         emit('player_left', {'username': user}, room=room)
         print(f"{user} left room {room} (all tabs closed)")
 
-    # print(f"Client disconnected: {request.sid}")
-    # if request.sid in players:
-    #     username = players[request.sid]['username']
-    #     room = players[request.sid]['room']
-    #     del players[request.sid]
-    #     emit('player_left', {'username': username}, room=room)
-    #     print(f"{username} disconnected from {room}")
-
 
 @socketio.on('join_game')
 def handle_join(data):
@@ -97,40 +91,6 @@ def handle_join(data):
     join_room(room)
     print(f"{username} joined SID={sid}; tabs now={len(user_sids[username])}")
 
-    # # Join the room
-    # # Always let the socket join the room so it can receive broadcasts.
-    # join_room(room)
-    #
-    # # If this username is *already* in the game, it’s a duplicate tab:
-    # # just send state and their color back—but don’t add a second square.
-    # first_seen = next((sid for sid, p in players.items()
-    #                    if p['username'] == username and p['room'] == room), None)
-    # color = generate_color(username)
-    #
-    # if first_seen:
-    #     # tell *this* tab its own color + current position
-    #     emit('player_data', {
-    #         'username': username,
-    #         'position': players[first_seen]['position'],
-    #         'color': color
-    #     })
-    #     # broadcast full state (including the original) to this tab
-    #     state = [
-    #         {'username': p['username'], 'position': p['position'], 'color': p['color']}
-    #         for p in players.values() if p['room'] == room
-    #     ]
-    #     emit('game_state', {'players': state})
-    #     return
-    #
-    # # first time this username logs in -> register them
-    # # Store player info
-    # players[request.sid] = {
-    #     'username': username,
-    #     'position': {'x': 0, 'y': 0},
-    #     'room': room,
-    #     'color': color
-    # }
-
     print("   players after:", players)
 
     # send this tab its own data
@@ -140,42 +100,20 @@ def handle_join(data):
     all_players = list(players.values())
     emit('game_state', {'players': all_players}, room=sid)
 
+    # send everyone the current grid map too
+    paint_list = [
+        {'x': int(k.split(',')[0]),
+         'y': int(k.split(',')[1]),
+         'username': u,
+         'color': players[u]['color']}
+        for k, u in grid_owner.items()
+    ]
+    emit('grid_state', {'cells': paint_list}, room=sid) # sid or room?
+
     # if this was the first tab (len==1), notify others of a new arrival
     if len(user_sids[username]) == 1:
         emit('player_joined', players[username], room=room, include_self=False)
         print(f"Broadcasted player_joined for {username}")
-
-    # # tell this tab its own color + starting position
-    # emit('player_data', {
-    #     'username': username,
-    #     'position': players[request.sid]['position'],
-    #     'color': color
-    # })
-    #
-    # # Notify others
-    # emit('player_joined', {
-    #     'username': username,
-    #     'position': players[request.sid]['position'],
-    #     'color': color
-    # }, room=room, include_self=False)
-    #
-    # # Send existing players to new player
-    # existing_players = []
-    # for sid, player in players.items():
-    #     if sid != request.sid and player['room'] == room:
-    #         existing_players.append({
-    #             'username': player['username'],
-    #             'position': player['position'],
-    #             'color': player['color']
-    #         })
-    #
-    # print(f"{username} joined room {room}")
-    # # print(f"Current players: {players}")
-    # print(f"Current players: {existing_players}")
-    #
-    # emit('game_state', {'players': existing_players})
-    #
-    # print(f"Server: {username} joined room {room}")
 
 
 @socketio.on('move')
@@ -188,46 +126,27 @@ def handle_move(data):
     if not username or username not in players:
         return
 
-    # update the canonical position
+    # 1) update the shared/canonical position of the player
     new_pos = data['position']
     players[username]['position'] = new_pos
     room = players[username]['room']
     print(f"{username} moved to {new_pos}")
 
-    # broadcast to everyone in room (including mover tabs)
+    # 2) paint that cell
+    cell_key = f"{new_pos['x']},{new_pos['y']}"
+    grid_owner[cell_key] = username
+
+    # 3) broadcast both the move AND the paint
+    # broadcast to everyone in room (including tabs with same account)
     emit('player_moved', {
         'username': username,
         'position': new_pos,
         'color': players[username]['color']
     }, room=room)
 
-    # if request.sid in players:
-    #     # players[request.sid]['position'] = data['position']
-    #     # room = players[request.sid]['room']
-    #
-    #     # Update position
-    #     pl = players[request.sid]
-    #     pl['position'] = data['position']
-    #     room = pl['room']
-    #
-    #     print("   players now:", players)
-    #
-    #     # Broadcast position to everyone in the room except sender
-    #     emit('player_moved', {
-    #         'username': pl['username'],
-    #         'position': pl['position'],
-    #         'color': pl['color']
-    #     }, room=room, include_self=False)
-    #     emit('player_moved', {
-    #          'username': players[request.sid]['username'],
-    #          'position': data['position']
-    #     }, room=room, include_self=False)
-
-        # optionally:
-        # state = [
-        #     {'username': p['username'], 'position': p['position']}
-        #     for p in players.values() if p['room'] == room
-        # ]
-        # emit('game_state', {'players': state}, room=room)
-
-    # print(f"Server: {players[request.sid]['username']} moved to {data['position']}")
+    emit('cell_painted', {
+        'x': new_pos['x'],
+        'y': new_pos['y'],
+        'username': username,
+        'color': players[username]['color']
+    }, room=room)
