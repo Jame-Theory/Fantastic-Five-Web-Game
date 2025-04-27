@@ -6,6 +6,8 @@ services:
       context: ./frontend
     container_name: frontend
     restart: always
+    ports:
+      - "8080:80"
 
   backend:
     build:
@@ -33,52 +35,15 @@ services:
     ports:
       - "27017:27017"
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - "8080:80"
-      - "443:443"
-    volumes:
-      - ./frontend/dist:/usr/share/nginx/html:ro
-      - ./nginx/zzz_override.conf:/etc/nginx/conf.d/default.conf
+#   nginx:
+#     image: nginx:latest
+#     container_name: nginx
+#     ports:
+#       - "8080:80"
+#       - "443:443"
+#     volumes:
+#       - ./frontend/dist:/usr/share/nginx/html:ro
+#       - ./nginx/zzz_override.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
   mongo-data:
-
-#services:
-#  mongodb:
-#    image: mongo:4.2.5
-#    container_name: mongodb
-#    ports:
-##      have to change this to something else for security
-#      - "27017:27017"
-#    volumes:
-#      - mongodb_data:/data/db
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#    networks:
-#      - app-network
-#
-##  backend:
-##    build: ./backend
-##    container_name: flask-backend
-##    ports:
-##      - "5000:5000"
-##    volumes:
-##      - ./backend:/app
-##    depends_on:
-##      - mongodb
-##    environment:
-###      hardcoded localhost!!!!
-##      - MONGO_URI=mongodb://admin:password@mongodb:27017/
-##    networks:
-##      - app-network
-#
-#networks:
-#  app-network:
-#    driver: bridge
-#
-#volumes:
-#  mongodb_data:

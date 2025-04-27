@@ -3,6 +3,8 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 # from flask_socketio import SocketIO
 from db import db
+# from database import db
+
 
 import logging
 import os
@@ -60,7 +62,6 @@ def create_app():
         return jsonify({"db_name": db.name, "collections": db.list_collection_names()})
 
     return app
-
 
 if __name__ == '__main__':
     app = create_app()
