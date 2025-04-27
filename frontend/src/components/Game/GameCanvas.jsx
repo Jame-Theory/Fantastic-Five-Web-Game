@@ -88,6 +88,13 @@ function GameCanvas({ username }) {
         ...prev,
         [data.username]: { position: data.position, color: data.color }
       }));
+
+      // Paint their starting cell immediately
+      setGrid(prev => {
+        const g = { ...prev, [`${data.position.x},${data.position.y}`]: { username: data.username, color: data.color } };
+        recomputeLeaderboard(g);
+        return g;
+      });
     };
 
     const onPlayerLeft = (data) => {
@@ -126,6 +133,13 @@ function GameCanvas({ username }) {
       console.log('🔖 player_data:', data);
       setSelfColor(data.color);
       setPosition(data.position);
+
+      // Paint starting cell immediately
+      setGrid(prev => {
+        const g = { ...prev, [`${data.position.x},${data.position.y}`]: { username: username, color: data.color } };
+        recomputeLeaderboard(g);
+        return g;
+      });
     };
 
     const onGridState = ({ cells }) => {
@@ -253,18 +267,31 @@ function GameCanvas({ username }) {
 
     // Draw other players (in *their* color), skip self
     Object.entries(players).forEach(([name, { position: p, color }]) => {
+      const px = p.x*gridSize,
+          py = p.y*gridSize;
       ctx.fillStyle = color;
-      ctx.fillRect(p.x * gridSize, p.y * gridSize, gridSize, gridSize);
+      ctx.fillRect(px, py, gridSize, gridSize);
+
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(px, py, gridSize, gridSize);
 
       ctx.fillStyle = '#000';
       ctx.font = '10px Arial';
-      ctx.fillText(name, p.x * gridSize, p.y * gridSize - 5);
+      ctx.fillText(name, px, py - 5);
+
     });
 
     // Draw current player (in our assigned color)
     // ctx.fillStyle = '#e74c3c';
+    const px = position.x * gridSize,
+          py = position.y * gridSize;
     ctx.fillStyle = selfColor;
-    ctx.fillRect(position.x * gridSize, position.y * gridSize, gridSize, gridSize);
+    ctx.fillRect(px, py, gridSize, gridSize);
+
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(px, py, gridSize, gridSize);
 
     ctx.fillStyle = '#000';
     ctx.font = '10px Arial';
