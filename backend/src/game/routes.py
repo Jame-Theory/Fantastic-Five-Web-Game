@@ -30,13 +30,24 @@ user_colors = {}
 
 def generate_color(username):
     """Give each username a distinct hex color (first‐seen wins)."""
-    if 'color' in players.get(username, {}):
-        return players[username]['color']
 
-    # simple random; you could swap in a color‐palette or HSL‐based spread
+    if username in user_colors:
+        return user_colors[username]
     color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
     user_colors[username] = color
     return color
+
+    # # might be redundant, idk
+    # if username in user_colors:
+    #     return user_colors[username]
+    #
+    # if 'color' in players.get(username, {}):
+    #     return players[username]['color']
+    #
+    # # simple random; you could swap in a color‐palette or HSL‐based spread
+    # color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
+    # user_colors[username] = color
+    # return color
 
 # Register socket events
 @socketio.on('connect')
@@ -93,6 +104,17 @@ def handle_join(data):
 
     print("   players after:", players)
 
+    # Paint their starting cell immediately
+    start = players[username]['position']
+    key = f"{start['x']},{start['y']}"
+    grid_owner[key] = username
+    emit('cell_painted', {
+        'x': start['x'],
+        'y': start['y'],
+        'username': username,
+        'color': players[username]['color']
+    }, room=room)
+
     # send this tab its own data
     emit('player_data', players[username], room=sid)
 
@@ -108,7 +130,8 @@ def handle_join(data):
          'color': players[u]['color']}
         for k, u in grid_owner.items()
     ]
-    emit('grid_state', {'cells': paint_list}, room=sid) # sid or room?
+    emit('grid_state',
+         {'cells': paint_list}, room=sid) # sid or room?
 
     # if this was the first tab (len==1), notify others of a new arrival
     if len(user_sids[username]) == 1:

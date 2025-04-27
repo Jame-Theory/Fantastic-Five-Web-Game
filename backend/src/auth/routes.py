@@ -8,7 +8,6 @@ from db import users_collection
 
 auth_bp = Blueprint('auth', __name__)
 
-
 @auth_bp.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
