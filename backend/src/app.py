@@ -1,27 +1,45 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, session
 from database import db
 from flask_cors import CORS
 import logging
 import os
 import traceback
 from datetime import datetime
+from log_path import setup_loggers
+from james_bp import james
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/api/ping")
-def ping():
-    return jsonify({"msg": "pong", "collections": db.list_collection_names()})
+full_http_logger = setup_loggers()
+app.register_blueprint(james)
 
-@app.route("/api/mongo-test")
-def ins():
-    test1 = db['test']
-    test1.insert_one({'one thing': 'not a big fan of the government'})
-    return jsonify({"inserted": True, "count": test1.count_documents({})})
+@app.before_request
+def before_log():
+    ip = request.remote_addr
+    method = request.method
+    path = request.path
+    username = session.get("username", "anonymous")
+    logging.info(f"{ip} {method} {path} {username}" )
 
-@app.route("/api/debug-db")
-def debug_db():
-    return jsonify({"db_name": db.name, "collections": db.list_collection_names()})
+@app.after_request
+def after_log(response):
+    ip = request.remote_addr
+    method = request.method
+    path = request.path
+    username = session.get("username", "anonymous")
+    code = response.status_code
+    logging.info(f"server responded to {ip} with {code}" )
+    # log_safe_http(request, response)
+    return response
+
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    try:
+        app.run(host="0.0.0.0", port=5000)
+    except Exception as e:
+        logging.error(f"Fatal server error: {traceback.format_exc()}")

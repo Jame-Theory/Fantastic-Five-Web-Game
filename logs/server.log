@@ -1,0 +1,138 @@
+2025-04-27 22:41:38,804 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.4:5000
+2025-04-27 22:41:38,805 [INFO] [33mPress CTRL+C to quit[0m
+2025-04-27 22:41:46,799 [INFO] 172.18.0.5 - - [27/Apr/2025 22:41:46] "GET /api/ping HTTP/1.1" 200 -
+2025-04-27 22:42:13,779 [INFO] 172.18.0.5 - - [27/Apr/2025 22:42:13] "GET /api/ping HTTP/1.1" 200 -
+2025-04-27 22:42:14,753 [INFO] 172.18.0.5 - - [27/Apr/2025 22:42:14] "GET /api/ping HTTP/1.1" 200 -
+2025-04-27 22:56:19,434 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.4:5000
+2025-04-27 22:56:19,434 [INFO] [33mPress CTRL+C to quit[0m
+2025-04-27 22:57:12,713 [INFO] 172.18.0.5 GET /api/ping anonymous
+2025-04-27 22:57:12,718 [INFO] server responded to 172.18.0.5 with 200
+2025-04-27 22:57:12,718 [ERROR] Exception on /api/ping [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask_cors/extension.py", line 188, in cors_after_request
+    if resp.headers is not None and resp.headers.get(ACL_ORIGIN):
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+2025-04-27 22:57:12,720 [INFO] server responded to 172.18.0.5 with 500
+2025-04-27 22:57:12,721 [ERROR] Request finalizing failed with an error while handling an error
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask_cors/extension.py", line 188, in cors_after_request
+    if resp.headers is not None and resp.headers.get(ACL_ORIGIN):
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask_cors/extension.py", line 188, in cors_after_request
+    if resp.headers is not None and resp.headers.get(ACL_ORIGIN):
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+2025-04-27 22:57:12,722 [INFO] 172.18.0.5 - - [27/Apr/2025 22:57:12] "[35m[1mGET /api/ping HTTP/1.1[0m" 500 -
+2025-04-27 23:02:26,567 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.4:5000
+2025-04-27 23:02:26,567 [INFO] [33mPress CTRL+C to quit[0m
+2025-04-27 23:02:39,840 [INFO] 172.18.0.5 GET /api/ping anonymous
+2025-04-27 23:02:39,845 [INFO] server responded to 172.18.0.5 with 200
+2025-04-27 23:02:39,846 [ERROR] Exception on /api/ping [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask_cors/extension.py", line 188, in cors_after_request
+    if resp.headers is not None and resp.headers.get(ACL_ORIGIN):
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+2025-04-27 23:02:39,847 [INFO] server responded to 172.18.0.5 with 500
+2025-04-27 23:02:39,848 [ERROR] Request finalizing failed with an error while handling an error
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask_cors/extension.py", line 188, in cors_after_request
+    if resp.headers is not None and resp.headers.get(ACL_ORIGIN):
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask_cors/extension.py", line 188, in cors_after_request
+    if resp.headers is not None and resp.headers.get(ACL_ORIGIN):
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+2025-04-27 23:02:39,849 [INFO] 172.18.0.5 - - [27/Apr/2025 23:02:39] "[35m[1mGET /api/ping HTTP/1.1[0m" 500 -
+2025-04-27 23:05:45,506 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.4:5000
+2025-04-27 23:05:45,507 [INFO] [33mPress CTRL+C to quit[0m
+2025-04-27 23:06:05,601 [INFO] 172.18.0.5 GET /api/ping anonymous
+2025-04-27 23:06:05,605 [INFO] server responded to 172.18.0.5 with 200
+2025-04-27 23:06:05,605 [INFO] 172.18.0.5 - - [27/Apr/2025 23:06:05] "GET /api/ping HTTP/1.1" 200 -
+2025-04-27 23:22:43,917 [INFO] 172.18.0.5 GET /api/ping anonymous
+2025-04-27 23:22:43,922 [INFO] server responded to 172.18.0.5 with 200
+2025-04-27 23:23:10,398 [INFO] 172.18.0.5 GET /api/ping anonymous
+2025-04-27 23:23:10,400 [INFO] server responded to 172.18.0.5 with 200
