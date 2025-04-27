@@ -111,3 +111,5 @@
 .password-requirements li.invalid:before {
   content: "✗";
 }
+
+#fix websocket

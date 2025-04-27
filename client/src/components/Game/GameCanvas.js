@@ -1,66 +1,65 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { io } from 'socket.io-client';
+import useSocket from '../../hooks/useSocket';
 
 function GameCanvas({ username }) {
   const canvasRef = useRef(null);
-  const [socket, setSocket] = useState(null);
   const [players, setPlayers] = useState({});
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const gridSize = 20;
-
-  // Initialize socket connection
-  useEffect(() => {
-    const newSocket = io.connect('http://localhost:5000');
-    setSocket(newSocket);
-    return () => newSocket.disconnect();
-  }, []);
+  const { isConnected, emit, on, off } = useSocket(username);
 
   // Socket event handlers
   useEffect(() => {
-    if (socket && username) {
-      socket.on('connect', () => {
-        socket.emit('join_game', { username, room: 'main' });
-      });
-
-      socket.on('player_joined', (data) => {
+    if (username) {
+      // Handle player joins
+      const handlePlayerJoined = (data) => {
         setPlayers((prev) => ({
           ...prev,
           [data.username]: data.position,
         }));
-      });
-
-      socket.on('player_left', (data) => {
+      };
+      
+      // Handle player leaves
+      const handlePlayerLeft = (data) => {
         setPlayers((prev) => {
           const updated = { ...prev };
           delete updated[data.username];
           return updated;
         });
-      });
-
-      socket.on('player_moved', (data) => {
+      };
+      
+      // Handle player movements
+      const handlePlayerMoved = (data) => {
         setPlayers((prev) => ({
           ...prev,
           [data.username]: data.position,
         }));
-      });
-
-      socket.on('game_state', (data) => {
+      };
+      
+      // Handle game state updates
+      const handleGameState = (data) => {
         const newPlayers = {};
         data.players.forEach((p) => {
           newPlayers[p.username] = p.position;
         });
         setPlayers(newPlayers);
-      });
+      };
+      
+      // Register all event handlers
+      on('player_joined', handlePlayerJoined);
+      on('player_left', handlePlayerLeft);
+      on('player_moved', handlePlayerMoved);
+      on('game_state', handleGameState);
+      
+      return () => {
+        // Unregister all event handlers
+        off('player_joined', handlePlayerJoined);
+        off('player_left', handlePlayerLeft);
+        off('player_moved', handlePlayerMoved);
+        off('game_state', handleGameState);
+      };
     }
-
-    return () => {
-      if (socket) {
-        ['connect', 'player_joined', 'player_left', 'player_moved', 'game_state'].forEach((ev) => {
-          socket.off(ev);
-        });
-      }
-    };
-  }, [socket, username]);
+  }, [username, on, off]);
 
   // Handle keyboard input
   useEffect(() => {
@@ -70,15 +69,18 @@ function GameCanvas({ username }) {
       if (e.key === 'ArrowDown') newPos.y = Math.min(24, position.y + 1);
       if (e.key === 'ArrowLeft') newPos.x = Math.max(0, position.x - 1);
       if (e.key === 'ArrowRight') newPos.x = Math.min(24, position.x + 1);
+      
       setPosition(newPos);
-if (socket) {
-    socket.emit('move', { position: newPos });
-  }
+      
+      // Only emit if connected
+      if (isConnected) {
+        emit('move', { position: newPos });
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [position, socket]);
+  }, [position, emit, isConnected]);
 
   // Draw the game
   useEffect(() => {
@@ -106,6 +108,7 @@ if (socket) {
   return (
     <div className="game-container">
       <h2>Game Canvas</h2>
+      <p>Status: {isConnected ? 'Connected' : 'Disconnected'}</p>
       <p>Use arrow keys to move. Other players will see you moving.</p>
       <canvas
         ref={canvasRef}
