@@ -12,8 +12,19 @@ function GameCanvas({ username }) {
   // our own color (comes from the server on join)
   const [selfColor, setSelfColor] = useState('#e74c3c');
 
+  const [serverColors, setServerColors] = useState({});
+
   // our shared server position
   const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const dirRef          = useRef(null);
+  const moveIntervalRef = useRef(null);
+
+  // keep the latest position in a ref so our interval always uses fresh coords
+  const positionRef = useRef(position);
+  useEffect(() => { positionRef.current = position }, [position]);
+
+
 
   const [isConnected, setIsConnected] = useState(false);
 
@@ -21,6 +32,8 @@ function GameCanvas({ username }) {
   // key = 'x,y' → { username, color }
   const [leaderboard, setLeaderboard] = useState([]);
 
+  const WORLD_COLS = 100, WORLD_ROWS = 100;
+  const VIEW_COLS  =  25, VIEW_ROWS  =  25;
   const gridSize = 20;
 
   // helper function for leaderboard
@@ -95,6 +108,9 @@ function GameCanvas({ username }) {
         recomputeLeaderboard(g);
         return g;
       });
+
+      // remember the new player's color
+      setServerColors(prev => ({ ...prev, [data.username]: data.color }));
     };
 
     const onPlayerLeft = (data) => {
@@ -109,12 +125,15 @@ function GameCanvas({ username }) {
     const onPlayerMoved = (data) => {
       if (data.username === username) { // for when user logs in 2x
         setPosition(data.position);
+        // these players are always on backend map, so "keep it fresh"
+        setServerColors(prev => ({ ...prev, [data.username]: data.color }));
       } else {
         console.log('➡️ player_moved:', data);
         setPlayers(prev => ({
           ...prev,
           [data.username]: { position: data.position, color: data.color }
         }));
+        setServerColors(prev => ({ ...prev, [data.username]: data.color }));
       }
     };
 
@@ -126,6 +145,13 @@ function GameCanvas({ username }) {
         map[p.username] = { position: p.position, color: p.color };
       });
       setPlayers(map);
+
+      // load *all* players’ colors at once
+      setServerColors(prev => {
+        const out = { ...prev };
+        data.players.forEach(p => { out[p.username] = p.color; });
+        return out;
+      });
     };
 
     // Our own initial data
@@ -140,9 +166,12 @@ function GameCanvas({ username }) {
         recomputeLeaderboard(g);
         return g;
       });
+
+      // remember *our* color from the server
+      setServerColors(prev => ({ ...prev, [data.username]: data.color }));
     };
 
-    const onGridState = ({ cells }) => {
+    const onGridState = ({ cells, user_colors }) => {
       // build the grid map
       const g = {};
       cells.forEach(c => {
@@ -150,17 +179,25 @@ function GameCanvas({ username }) {
       });
       setGrid(g);
       recomputeLeaderboard(g);
+
+      // save the authoritative color map from the server
+      if (user_colors) {
+        setServerColors(user_colors)
+      }
     };
 
     const onCellPainted = (c) => {
       setGrid(prev => {
-      const g = {
-        ...prev,
-        [`${c.x},${c.y}`]: { username:c.username, color:c.color }
-      };
-      recomputeLeaderboard(g);
-      return g;
-    });
+        const g = {
+          ...prev,
+          [`${c.x},${c.y}`]: { username: c.username, color:c.color }
+        };
+        recomputeLeaderboard(g);
+        return g;
+      });
+
+      // palette update (in case someone’s color changed on the server)
+      setServerColors(prev => ({ ...prev, [c.username]: c.color }));
     }
 
     socket.on('connect', onConnect);
@@ -186,118 +223,197 @@ function GameCanvas({ username }) {
       socket.off('grid_state', onGridState);
       socket.off('cell_painted', onCellPainted);
     };
-    // return () => {
-    //   if (socket) {
-    //     socket.off('connect');
-    //     socket.off('disconnect');
-    //     socket.off('player_joined');
-    //     socket.off('player_left');
-    //     socket.off('player_moved');
-    //     socket.off('game_state');
-    //   }
-    // };
   }, [socket, username]);
 
   // Handle keyboard input
+  // —— zero-delay, snappy pivot, steady repeats ——
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      let newPosition = { ...position };
+    if (!socket || !isConnected) return;
 
-      switch (e.key) {
-        case 'ArrowUp':
-          newPosition.y = Math.max(0, position.y - 1);
-          break;
-        case 'ArrowDown':
-          newPosition.y = Math.min(24, position.y + 1);
-          break;
-        case 'ArrowLeft':
-          newPosition.x = Math.max(0, position.x - 1);
-          break;
-        case 'ArrowRight':
-          newPosition.x = Math.min(24, position.x + 1);
-          break;
-        default:
-          return;
-      }
+    const MOVE_RATE = 100;  // milliseconds between moves; tweak to taste
+    const keyMap = {
+      ArrowUp:    { dx:  0, dy: -1 },
+      ArrowDown:  { dx:  0, dy:  1 },
+      ArrowLeft:  { dx: -1, dy:  0 },
+      ArrowRight: { dx:  1, dy:  0 }
+    };
 
-      setPosition(newPosition);
-      if (socket && isConnected) {
-        socket.emit('move', { position: newPosition });
+    // perform a move using the very latest position
+    const doMove = ({ dx, dy }) => {
+      const { x, y } = positionRef.current;
+      const nx = Math.max(0, Math.min(WORLD_COLS - 1, x + dx));
+      const ny = Math.max(0, Math.min(WORLD_ROWS - 1, y + dy));
+      socket.emit('move', { position: { x: nx, y: ny } });
+    };
+
+    // start or restart moving in this direction
+    const startMoving = (dir) => {
+      clearInterval(moveIntervalRef.current);
+      dirRef.current = `${dir.dx},${dir.dy}`;
+      doMove(dir);  // **instant** first step
+      // then rock-steady repeats
+      moveIntervalRef.current = setInterval(() => {
+        doMove(dir);
+      }, MOVE_RATE);
+    };
+
+    // stop if we release the active direction
+    const stopMoving = (dirKey) => {
+      if (dirRef.current === dirKey) {
+        clearInterval(moveIntervalRef.current);
+        dirRef.current = null;
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    const onKeyDown = (e) => {
+      const dir = keyMap[e.key];
+      if (!dir) return;
+      const key = `${dir.dx},${dir.dy}`;
+      if (dirRef.current !== key) {
+        startMoving(dir);
+      }
+    };
+
+    const onKeyUp = (e) => {
+      const dir = keyMap[e.key];
+      if (!dir) return;
+      stopMoving(`${dir.dx},${dir.dy}`);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup',   onKeyUp);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup',   onKeyUp);
+      clearInterval(moveIntervalRef.current);
+      dirRef.current = null;
     };
-  }, [position, socket, isConnected]);
+  }, [socket, isConnected]);
+
+
+
+  // old movement
+  // useEffect(() => {
+  //   const handleKeyDown = (e) => {
+  //     let newPosition = { ...position };
+  //
+  //     switch (e.key) {
+  //       case 'ArrowUp':
+  //         newPosition.y = newPosition.y - 1;
+  //         break;
+  //       case 'ArrowDown':
+  //         newPosition.y = newPosition.y + 1;
+  //         break;
+  //       case 'ArrowLeft':
+  //         newPosition.x = newPosition.x - 1;
+  //         break;
+  //       case 'ArrowRight':
+  //         newPosition.x = newPosition.x + 1;
+  //         break;
+  //       default:
+  //         return;
+  //     }
+  //
+  //     // clamp within 0 .. WORLD−1
+  //     newPosition.x = Math.max(0, Math.min(WORLD_COLS - 1, newPosition.x));
+  //     newPosition.y = Math.max(0, Math.min(WORLD_ROWS - 1, newPosition.y));
+  //
+  //     if (socket && isConnected) {
+  //       socket.emit('move', { position: newPosition });
+  //     }
+  //   };
+  //
+  //   window.addEventListener('keydown', handleKeyDown);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, [position, socket, isConnected]);
 
   // Draw the game
   useEffect(() => {
-    console.log('🎨 drawing canvas: my position=', position, 'all players=', players);
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
 
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // compute camera origin so player is centered when possible
+    const camX = Math.max(
+      0,
+      Math.min(position.x - Math.floor(VIEW_COLS/2), WORLD_COLS - VIEW_COLS)
+    );
+    const camY = Math.max(
+      0,
+      Math.min(position.y - Math.floor(VIEW_ROWS/2), WORLD_ROWS - VIEW_ROWS)
+    );
 
-    // Draw grid
-    ctx.strokeStyle = '#ddd';
-    for (let i = 0; i <= canvas.width; i += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(i, 0);
-      ctx.lineTo(i, canvas.height);
-      ctx.stroke();
-    }
-    for (let i = 0; i <= canvas.height; i += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(0, i);
-      ctx.lineTo(canvas.width, i);
-      ctx.stroke();
-    }
+    // clear the 25×25 viewport
+    ctx.clearRect(0, 0, VIEW_COLS * gridSize, VIEW_ROWS * gridSize);
 
-    // paint cells
+    // paint cells that lie within the viewport
     Object.entries(grid).forEach(([key, {color}]) => {
       const [x,y] = key.split(',').map(Number);
-      ctx.fillStyle = color;
-      ctx.fillRect(x*gridSize, y*gridSize, gridSize, gridSize);
+      if (x >= camX && x < camX + VIEW_COLS && y >= camY && y < camY + VIEW_ROWS) {
+        ctx.fillStyle = color;
+        ctx.fillRect(
+          (x - camX) * gridSize,
+          (y - camY) * gridSize,
+          gridSize,
+          gridSize
+        );
+      }
     });
 
-    // Draw other players (in *their* color), skip self
-    Object.entries(players).forEach(([name, { position: p, color }]) => {
-      const px = p.x*gridSize,
-          py = p.y*gridSize;
+    // draw grid lines for 25×25 cells
+    ctx.strokeStyle = '#999'; // darker lines on dark background
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= VIEW_COLS; i++) {
+      const sx = i * gridSize;
+      ctx.beginPath();
+      ctx.moveTo(sx, 0);
+      ctx.lineTo(sx, VIEW_ROWS * gridSize);
+      ctx.stroke();
+    }
+    for (let j = 0; j <= VIEW_ROWS; j++) {
+      const sy = j * gridSize;
+      ctx.beginPath();
+      ctx.moveTo(0, sy);
+      ctx.lineTo(VIEW_COLS * gridSize, sy);
+      ctx.stroke();
+    }
+
+    // helper to draw a player square + bordered name
+    function drawPlayer(u, pos, color, isSelf=false) {
+      const px = (pos.x - camX) * gridSize;
+      const py = (pos.y - camY) * gridSize;
+
+      // fill square
       ctx.fillStyle = color;
       ctx.fillRect(px, py, gridSize, gridSize);
 
+      // border
       ctx.strokeStyle = '#000';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 2;
       ctx.strokeRect(px, py, gridSize, gridSize);
 
-      ctx.fillStyle = '#000';
-      ctx.font = '10px Arial';
-      ctx.fillText(name, px, py - 5);
+      // name tag background
+      ctx.font = 'bold 12px Arial';
+      const textW = ctx.measureText(u).width;
+      ctx.fillStyle = 'rgba(0,0,0,0.6)';
+      ctx.fillRect(px - 2, py - 18, textW + 4, 16);
 
+      // name text
+      ctx.fillStyle = '#fff';
+      ctx.fillText(u, px, py - 4);
+    }
+
+    // draw *other* players
+    Object.entries(players).forEach(([u,{position:p,color}]) => {
+      drawPlayer(u, p, color);
     });
 
-    // Draw current player (in our assigned color)
-    // ctx.fillStyle = '#e74c3c';
-    const px = position.x * gridSize,
-          py = position.y * gridSize;
-    ctx.fillStyle = selfColor;
-    ctx.fillRect(px, py, gridSize, gridSize);
+    // draw yourself on top
+    drawPlayer(username, position, selfColor, true);
 
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(px, py, gridSize, gridSize);
-
-    ctx.fillStyle = '#000';
-    ctx.font = '10px Arial';
-    ctx.fillText(username, position.x * gridSize, (position.y * gridSize) - 5);
-
-  }, [position, players, username]);
+  }, [grid, players, position, selfColor, username]);
 
   return (
     <div className="game-container" style={{display:'flex'}}>
@@ -309,8 +425,8 @@ function GameCanvas({ username }) {
       <div>
         <canvas
           ref={canvasRef}
-          width={500}
-          height={500}
+          width={VIEW_COLS * gridSize}
+          height={VIEW_ROWS * gridSize}
           style={{ border: '1px solid #000' }}
         />
       </div>
@@ -319,12 +435,30 @@ function GameCanvas({ username }) {
         <h3>Leaderboard</h3>
         <ol>
           {leaderboard.map(({user,count}) => (
-            <li key={user}>
-              <span style={{color: players[user]?.color || selfColor || '#000'}}>
+            <li
+              key={user}
+              style={{
+                fontWeight: user === username ? 'bold' : 'normal',
+                backgroundColor: user === username
+                  ? 'rgba(255,255,255,0.2)'
+                  : 'transparent',
+                padding: user === username ? '2px 4px' : undefined,
+                borderRadius: user === username ? '4px' : undefined
+              }}
+            >
+              <span style={{color: serverColors[user] || '#000'}}>
                 {user}
               </span>: {count}
             </li>
           ))}
+
+          {/*{leaderboard.map(({user,count}) => (*/}
+          {/*  <li key={user}>*/}
+          {/*    <span style={{color: players[user]?.color || selfColor || '#000'}}>*/}
+          {/*      {user}*/}
+          {/*    </span>: {count}*/}
+          {/*  </li>*/}
+          {/*))}*/}
         </ol>
       </div>
     </div>

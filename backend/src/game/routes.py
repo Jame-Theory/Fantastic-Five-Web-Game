@@ -129,7 +129,10 @@ def handle_join(data):
         }
         for k, u in grid_owner.items()
     ]
-    emit('grid_state', {'cells': full}, room=room)
+    emit('grid_state', {
+        'cells': full,
+        'user_colors': user_colors
+    }, room=room)
 
     # send this tab its own data
     emit('player_data', players[username], room=sid)
