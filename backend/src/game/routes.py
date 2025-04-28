@@ -39,18 +39,6 @@ def generate_color(username):
     user_colors[username] = color
     return color
 
-    # # might be redundant, idk
-    # if username in user_colors:
-    #     return user_colors[username]
-    #
-    # if 'color' in players.get(username, {}):
-    #     return players[username]['color']
-    #
-    # # simple random; you could swap in a color‐palette or HSL‐based spread
-    # color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
-    # user_colors[username] = color
-    # return color
-
 # Register socket events
 @socketio.on('connect')
 def handle_connect():
@@ -82,7 +70,7 @@ def handle_disconnect():
 def handle_join(data):
 
     print(f"👉 handle_join called, sid={request.sid}, data={data}")
-    print("   players before:", players)
+    # print("   players before:", players)
 
     username = data.get('username')
     room = data.get('room', 'main')
@@ -161,7 +149,7 @@ def handle_join(data):
 @socketio.on('move')
 def handle_move(data):
 
-    print(f"👉 handle_move called, sid={request.sid}, data={data}")
+    # print(f"👉 handle_move called, sid={request.sid}, data={data}")
 
     sid = request.sid
     username = sid_to_user.get(sid)
@@ -172,7 +160,7 @@ def handle_move(data):
     new_pos = data['position']
     players[username]['position'] = new_pos
     room = players[username]['room']
-    print(f"{username} moved to {new_pos}")
+    # print(f"{username} moved to {new_pos}")
 
     # 2) paint that cell
     cell_key = f"{new_pos['x']},{new_pos['y']}"

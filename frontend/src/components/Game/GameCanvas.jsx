@@ -78,25 +78,25 @@ function GameCanvas({ username }) {
     console.log("🔗 setting up socket listeners, socket:", socket, "username:", username);
 
     const onConnect = () => {
-      console.log('✅ Connected to WebSocket server');
+      // console.log('✅ Connected to WebSocket server');
       setIsConnected(true);
       socket.emit('join_game', { username, room: 'main' });
     };
 
     const onDisconnect = () => {
-      console.log('❌ Disconnected from WebSocket server');
+      // console.log('❌ Disconnected from WebSocket server');
       setIsConnected(false);
     };
 
     const onConnectError = (error) => {
-      console.error('Connection error:', error);
+      // console.error('Connection error:', error);
       setIsConnected(false);
     };
 
     const onPlayerJoined = (data) => {
       if (data.username === username) return; // for when user logs in 2x
 
-      console.log('⬆️ player_joined:', data);
+      // console.log('⬆️ player_joined:', data);
       setPlayers(prev => ({
         ...prev,
         [data.username]: { position: data.position, color: data.color }
@@ -114,7 +114,7 @@ function GameCanvas({ username }) {
     };
 
     const onPlayerLeft = (data) => {
-      console.log('⬇️ player_left:', data);
+      // console.log('⬇️ player_left:', data);
       setPlayers(prev => {
         const copy = { ...prev };
         delete copy[data.username];
@@ -128,7 +128,7 @@ function GameCanvas({ username }) {
         // these players are always on backend map, so "keep it fresh"
         setServerColors(prev => ({ ...prev, [data.username]: data.color }));
       } else {
-        console.log('➡️ player_moved:', data);
+        // console.log('➡️ player_moved:', data);
         setPlayers(prev => ({
           ...prev,
           [data.username]: { position: data.position, color: data.color }
@@ -156,7 +156,7 @@ function GameCanvas({ username }) {
 
     // Our own initial data
     const onPlayerData = (data) => {
-      console.log('🔖 player_data:', data);
+      // console.log('🔖 player_data:', data);
       setSelfColor(data.color);
       setPosition(data.position);
 
