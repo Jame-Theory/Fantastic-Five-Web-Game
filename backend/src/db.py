@@ -5,7 +5,6 @@ import os
 
 from pymongo import MongoClient
 
-
 # MongoDB connection string from environment variable
 mongo_uri = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/fantastic_game')
 # mongo_uri = "mongodb://admin:password@localhost:27017/"
