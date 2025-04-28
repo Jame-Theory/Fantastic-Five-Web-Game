@@ -1,15 +1,20 @@
-# backend/app.py
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, session
+from database import db
 from flask_cors import CORS
 # from flask_socketio import SocketIO
 from db import db
 # from database import db
-
-
 import logging
 import os
 import traceback
 from datetime import datetime
+from log_path import setup_loggers
+from test_bp import test
+from auth.routes import auth_bp
+from game.routes import game_bp
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 # app = Flask(__name__)
 # CORS(app)
@@ -26,13 +31,10 @@ def create_app():
     CORS(app)
     socketio.init_app(app, cors_allowed_origins="*", path='/socket.io')
 
-    # Import blueprints
-    from auth.routes import auth_bp
-    from game.routes import game_bp
-
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(game_bp, url_prefix='/api/game')
+    app.register_blueprint(test)
 
     # right before `return app`
     print("🗺️ Registered routes:")
@@ -45,24 +47,32 @@ def create_app():
         from flask import jsonify
         return jsonify({"message": "API is running"})
 
-    ####################################
+    full_http_logger = setup_loggers()
 
-    @app.route("/api/ping")
-    def ping():
-        return jsonify({"msg": "pong", "collections": db.list_collection_names()})
+    @app.before_request
+    def before_log():
+        ip = request.remote_addr
+        method = request.method
+        path = request.path
+        username = session.get("username", "anonymous")
+        logging.info(f"{ip} {method} {path} {username}")
 
-    @app.route("/api/mongo-test")
-    def ins():
-        test1 = db['test']
-        test1.insert_one({'one thing': 'not a big fan of the government'})
-        return jsonify({"inserted": True, "count": test1.count_documents({})})
-
-    @app.route("/api/debug-db")
-    def debug_db():
-        return jsonify({"db_name": db.name, "collections": db.list_collection_names()})
+    @app.after_request
+    def after_log(response):
+        ip = request.remote_addr
+        code = response.status_code
+        logging.info(f"server responded to {ip} with {code}")
+        # log_safe_http(request, response)
+        return response
 
     return app
 
+    ####################################
+
+
 if __name__ == '__main__':
-    app = create_app()
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
+    try:
+        app = create_app()
+        socketio.run(app, debug=True, host='0.0.0.0', port=5000)
+    except Exception as e:
+        logging.error(f"Fatal server error: {traceback.format_exc()}")
