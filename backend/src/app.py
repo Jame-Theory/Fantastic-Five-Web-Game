@@ -9,7 +9,7 @@ import os
 import traceback
 from datetime import datetime
 from log_path import setup_loggers
-from james_bp import james
+from test_bp import test
 from auth.routes import auth_bp
 from game.routes import game_bp
 
@@ -34,7 +34,7 @@ def create_app():
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(game_bp, url_prefix='/api/game')
-    app.register_blueprint(james)
+    app.register_blueprint(test)
 
     # right before `return app`
     print("🗺️ Registered routes:")
