@@ -6,8 +6,8 @@ services:
       context: ./frontend
     container_name: frontend
     restart: always
-    ports:
-      - "8080:80"
+#    ports:
+#      - "8080:80"
 
   backend:
     build:
