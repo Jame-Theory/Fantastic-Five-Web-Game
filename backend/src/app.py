@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request, session
 from flask_cors import CORS
 # from flask_socketio import SocketIO
+
 from db import db
 # from database import db
+
 import logging
 import os
 import traceback
@@ -15,6 +17,8 @@ from game.routes import game_bp
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
+from flask_jwt_extended import JWTManager
+
 # app = Flask(__name__)
 # CORS(app)
 
@@ -24,10 +28,18 @@ from extensions import socketio
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'your-secret-key'  # Change this in production
+    # app.config['SECRET_KEY'] = 'your-secret-key'  # Change this in production
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key')
+
+    app.config['JWT_SECRET_KEY'] = app.config['SECRET_KEY']
+    app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+    app.config['JWT_ACCESS_COOKIE_PATH'] = '/api/'
+    app.config['JWT_COOKIE_SECURE'] = False  # True in HTTPS/production
+    app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # or True + handle X-CSRF
+    jwt = JWTManager(app)
 
     # Initialize extensions
-    CORS(app)
+    CORS(app, supports_credentials=True)
     socketio.init_app(app, cors_allowed_origins="*", path='/socket.io')
 
     # Register blueprints

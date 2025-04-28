@@ -1,6 +1,8 @@
 // src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 import App from './App.jsx'
 import './App.css'
 

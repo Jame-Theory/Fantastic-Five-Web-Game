@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import GameCanvas from './components/Game/GameCanvas';
 import './App.css';
+import axios from "axios";
+axios.defaults.withCredentials = true
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,6 +17,17 @@ function App() {
   const handleLogout = () => {
     setUser(null);
   };
+
+  useEffect(() => {
+    // Attempt to restore session
+    axios.get('/api/auth/me')
+      .then(res => {
+        setUser({ username: res.data.username });
+      })
+      .catch(() => {
+        // not logged in or token expired
+      });
+  }, []);
 
   return (
     <div className="App">
