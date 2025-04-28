@@ -136,3 +136,27 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-04-27 23:22:43,922 [INFO] server responded to 172.18.0.5 with 200
 2025-04-27 23:23:10,398 [INFO] 172.18.0.5 GET /api/ping anonymous
 2025-04-27 23:23:10,400 [INFO] server responded to 172.18.0.5 with 200
+2025-04-28 04:07:08,180 [INFO] 172.18.0.4 GET /api/ping anonymous
+2025-04-28 04:07:08,194 [INFO] server responded to 172.18.0.4 with 200
+2025-04-28 04:07:49,968 [INFO] 172.18.0.4 GET /api/mongo-test anonymous
+2025-04-28 04:07:50,021 [INFO] server responded to 172.18.0.4 with 200
+2025-04-28 04:07:51,960 [INFO] 172.18.0.4 GET /api/mongo-test anonymous
+2025-04-28 04:07:51,965 [INFO] server responded to 172.18.0.4 with 200
+2025-04-28 04:07:53,520 [INFO] 172.18.0.4 GET /api/mongo-test anonymous
+2025-04-28 04:07:53,525 [INFO] server responded to 172.18.0.4 with 200
+2025-04-28 04:20:13,012 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-04-28 04:20:13,023 [INFO] server responded to 172.18.0.4 with 401
+2025-04-28 04:20:15,951 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-04-28 04:20:15,953 [INFO] server responded to 172.18.0.4 with 401
+2025-04-28 04:20:18,248 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-04-28 04:20:18,252 [INFO] server responded to 172.18.0.4 with 401
+2025-04-28 04:20:22,283 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-04-28 04:20:22,287 [INFO] server responded to 172.18.0.4 with 401
+2025-04-28 04:20:33,218 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-04-28 04:20:33,626 [INFO] server responded to 172.18.0.4 with 201
+2025-04-28 04:20:33,675 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-04-28 04:20:34,042 [INFO] server responded to 172.18.0.4 with 200
+2025-04-28 04:23:07,289 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-04-28 04:23:07,665 [INFO] server responded to 172.18.0.4 with 201
+2025-04-28 04:23:07,703 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-04-28 04:23:08,052 [INFO] server responded to 172.18.0.4 with 200

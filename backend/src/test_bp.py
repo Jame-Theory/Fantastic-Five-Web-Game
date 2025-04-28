@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from database import db
+from db import db
 test = Blueprint("test", __name__)
 
 @test.route("/api/ping")
