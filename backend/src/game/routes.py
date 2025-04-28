@@ -24,6 +24,8 @@ sid_to_user = {}
 # keep a record of painted cells: map “x,y” → username
 grid_owner: dict[str,str] = {}
 
+WORLD_COLS = 25
+WORLD_ROWS = 25
 
 # Keep one color per username (defunct?)
 user_colors = {}
@@ -86,11 +88,13 @@ def handle_join(data):
     room = data.get('room', 'main')
     sid = request.sid
 
-    # if first time ever, create the player
+    # if first time login: create the player and pick random start cell
     if username not in players:
+        start_x = random.randint(0, WORLD_COLS - 1)
+        start_y = random.randint(0, WORLD_ROWS - 1)
         players[username] = {
             'username': username,
-            'position': {'x': 0, 'y': 0},
+            'position': {'x': start_x, 'y': start_y},
             'room': room,
             'color': generate_color(username)
         }
@@ -115,6 +119,18 @@ def handle_join(data):
         'color': players[username]['color']
     }, room=room)
 
+    # to get paint on initial join
+    full = [
+        {
+            'x': int(k.split(',')[0]),
+            'y': int(k.split(',')[1]),
+            'username': u,
+            'color': user_colors[u]
+        }
+        for k, u in grid_owner.items()
+    ]
+    emit('grid_state', {'cells': full}, room=room)
+
     # send this tab its own data
     emit('player_data', players[username], room=sid)
 
@@ -123,15 +139,15 @@ def handle_join(data):
     emit('game_state', {'players': all_players}, room=sid)
 
     # send everyone the current grid map too
-    paint_list = [
-        {'x': int(k.split(',')[0]),
-         'y': int(k.split(',')[1]),
-         'username': u,
-         'color': players[u]['color']}
-        for k, u in grid_owner.items()
-    ]
-    emit('grid_state',
-         {'cells': paint_list}, room=sid) # sid or room?
+    # paint_list = [
+    #     {'x': int(k.split(',')[0]),
+    #      'y': int(k.split(',')[1]),
+    #      'username': u,
+    #      'color': players[u]['color']}
+    #     for k, u in grid_owner.items()
+    # ]
+    # emit('grid_state',
+    #      {'cells': paint_list}, room=sid) # sid or room?
 
     # if this was the first tab (len==1), notify others of a new arrival
     if len(user_sids[username]) == 1:
