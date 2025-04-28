@@ -1,4 +1,8 @@
 flask
+flask-cors
+flask-socketio
 gunicorn
 pymongo
-flask-cors
+bcrypt
+eventlet  # For better WebSocket performance
+
