@@ -162,3 +162,103 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-04-28 04:23:08,052 [INFO] server responded to 172.18.0.4 with 200
 2025-04-28 05:11:35,992 [INFO] 172.18.0.4 POST /api/auth/login anonymous
 2025-04-28 05:11:36,386 [INFO] server responded to 172.18.0.4 with 200
+2025-05-03 12:55:09,956 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 12:55:10,334 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 12:57:21,164 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 12:57:21,536 [INFO] server responded to 172.20.0.5 with 401
+2025-05-03 12:57:26,957 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 12:57:27,332 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:17:10,561 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:17:10,937 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:28:34,938 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:28:35,320 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:29:44,769 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:29:45,146 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:31:53,936 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:31:54,317 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:36:47,592 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:36:47,969 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:36:52,027 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 15:36:52,033 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:37:26,875 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 15:37:29,254 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 15:37:56,419 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:37:56,799 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:38:10,729 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 15:38:10,732 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:38:25,580 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 15:40:20,098 [INFO] 172.20.0.5 GET /api/auth/avatar anonymous
+2025-05-03 15:40:20,100 [INFO] server responded to 172.20.0.5 with 405
+2025-05-03 15:47:13,209 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:47:13,590 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:47:17,548 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 15:47:17,551 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:47:35,509 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 15:48:48,378 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:48:48,752 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:48:52,996 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 15:48:52,999 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:49:15,727 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 15:59:34,054 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:59:34,450 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 15:59:51,662 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 15:59:52,039 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:00:25,661 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:00:25,666 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:00:34,741 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:04:38,417 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:04:38,805 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:04:41,942 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:04:41,946 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:04:50,008 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:04:50,090 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:04:50,101 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:04:50,104 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:05:17,613 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:05:17,642 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:05:17,654 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:05:17,656 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:06:00,959 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:06:01,335 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:11:54,185 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:11:54,191 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:12:25,593 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:12:25,609 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:12:25,626 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:12:25,630 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:13:22,943 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:13:23,322 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:24:57,155 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:24:57,537 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:25:40,444 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:25:40,447 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:25:47,944 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:25:48,004 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:25:48,017 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:25:48,021 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:26:33,888 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:26:33,893 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:26:40,649 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:26:40,651 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:26:59,607 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:26:59,665 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:26:59,677 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:26:59,679 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:30:55,018 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:30:55,023 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:31:05,114 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:31:05,138 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:31:05,149 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:31:05,151 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:32:31,360 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:32:31,375 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:32:31,398 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:32:31,400 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:32:54,057 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 16:32:54,100 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:32:54,112 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:32:54,114 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:33:05,592 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:33:05,966 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:33:09,479 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 16:33:09,482 [INFO] server responded to 172.20.0.5 with 200

@@ -3,11 +3,18 @@ import { io } from 'socket.io-client';
 
 function GameCanvas({ username }) {
   const canvasRef = useRef(null);
+
+  // Ref-map: username → HTMLImageElement (avatars)
+  const avatarImages = useRef({});
+
   const [socket, setSocket] = useState(null);
   // const [players, setPlayers] = useState({});
 
   // now map username → { position: {x,y}, color: '#rrggbb' }
   const [players, setPlayers] = useState({});
+
+  // our own avatar data-URL
+  const [selfAvatar, setSelfAvatar] = useState(null);
 
   // our own color (comes from the server on join)
   const [selfColor, setSelfColor] = useState('#e74c3c');
@@ -23,7 +30,6 @@ function GameCanvas({ username }) {
   // keep the latest position in a ref so our interval always uses fresh coords
   const positionRef = useRef(position);
   useEffect(() => { positionRef.current = position }, [position]);
-
 
 
   const [isConnected, setIsConnected] = useState(false);
@@ -94,13 +100,33 @@ function GameCanvas({ username }) {
     };
 
     const onPlayerJoined = (data) => {
+      // data: { username, position, color, avatar }
+
       if (data.username === username) return; // for when user logs in 2x
 
       // console.log('⬆️ player_joined:', data);
+      // setPlayers(prev => ({
+      //   ...prev,
+      //   [data.username]: { position: data.position, color: data.color }
+      // }));
+
+      // FOR AVATARS
       setPlayers(prev => ({
         ...prev,
-        [data.username]: { position: data.position, color: data.color }
+        [data.username]: {
+          position: data.position,
+          color: data.color,
+          avatar: data.avatar
+        }
       }));
+
+      // cache their avatar image
+      if (data.avatar) {
+        const img = new Image();
+        img.src = data.avatar;
+        avatarImages.current[data.username] = img;
+      }
+      /////////////////////////////////////
 
       // Paint their starting cell immediately
       setGrid(prev => {
@@ -125,26 +151,74 @@ function GameCanvas({ username }) {
     const onPlayerMoved = (data) => {
       if (data.username === username) { // for when user logs in 2x
         setPosition(data.position);
+
+        if (data.avatar) {
+          // in case avatar changed
+          const img = new Image();
+          img.src = data.avatar;
+          avatarImages.current[data.username] = img;
+        }
+
         // these players are always on backend map, so "keep it fresh"
         setServerColors(prev => ({ ...prev, [data.username]: data.color }));
+
       } else {
         // console.log('➡️ player_moved:', data);
+        // setPlayers(prev => ({
+        //   ...prev,
+        //   [data.username]: { position: data.position, color: data.color }
+        // }));
+
+        // CHANGED FOR AVATARS
         setPlayers(prev => ({
           ...prev,
-          [data.username]: { position: data.position, color: data.color }
+          [data.username]: {
+            position: data.position,
+            color: data.color,
+            avatar: data.avatar
+          }
         }));
+
+        if (data.avatar) {
+          const img = new Image();
+          img.src = data.avatar;
+          avatarImages.current[data.username] = img;
+        }
+
+        ///////////////////////////////
+
         setServerColors(prev => ({ ...prev, [data.username]: data.color }));
       }
     };
 
     const onGameState = (data) => {
-      console.log('📦 game_state:', data);
+      // console.log('📦 game_state:', data);
+      // const map = {};
+      // data.players.forEach(p => {
+      //   if (p.username === username) return;
+      //   map[p.username] = { position: p.position, color: p.color };
+      // });
+      // setPlayers(map);
+
+      // FOR AVATARS
       const map = {};
       data.players.forEach(p => {
         if (p.username === username) return;
-        map[p.username] = { position: p.position, color: p.color };
+        map[p.username] = {
+          position: p.position,
+          color:    p.color,
+          avatar:   p.avatar
+        };
+        // cache each avatar
+        if (p.avatar) {
+          const img = new Image();
+          img.src = p.avatar;
+          avatarImages.current[p.username] = img;
+        }
       });
       setPlayers(map);
+
+      ///////////////////////////////
 
       // load *all* players’ colors at once
       setServerColors(prev => {
@@ -156,9 +230,18 @@ function GameCanvas({ username }) {
 
     // Our own initial data
     const onPlayerData = (data) => {
+      // data: { username, position, color, avatar }
       // console.log('🔖 player_data:', data);
       setSelfColor(data.color);
       setPosition(data.position);
+
+      // store our avatar
+      if (data.avatar) {
+        setSelfAvatar(data.avatar);
+        const img = new Image();
+        img.src = data.avatar;
+        avatarImages.current[username] = img;
+      }
 
       // Paint starting cell immediately
       setGrid(prev => {
@@ -291,7 +374,6 @@ function GameCanvas({ username }) {
   }, [socket, isConnected]);
 
 
-
   // old movement
   // useEffect(() => {
   //   const handleKeyDown = (e) => {
@@ -385,9 +467,23 @@ function GameCanvas({ username }) {
       const px = (pos.x - camX) * gridSize;
       const py = (pos.y - camY) * gridSize;
 
+      const imgMap = isSelf
+        ? { [username]: selfAvatar }
+        : players;
+
+      const avatarData = isSelf
+        ? selfAvatar
+        : players[u]?.avatar;
+
       // fill square
-      ctx.fillStyle = color;
-      ctx.fillRect(px, py, gridSize, gridSize);
+      // ctx.fillStyle = color;
+      // ctx.fillRect(px, py, gridSize, gridSize);
+      if (avatarData && avatarImages.current[u]?.complete) {
+        ctx.drawImage(avatarImages.current[u], px, py, gridSize, gridSize);
+      } else {
+        ctx.fillStyle = color;
+        ctx.fillRect(px, py, gridSize, gridSize);
+      }
 
       // border
       ctx.strokeStyle = '#000';

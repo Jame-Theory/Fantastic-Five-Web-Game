@@ -3,9 +3,6 @@
 deployment URL:
 fantastic-five.cse312.dev
 
-steps to run locally right now (if just running typing "docker-compose up -d" and going on localhost:8080 does not work):
+steps to run locally right now:
 1. docker-compose up -d
-2. another terminal:
-    2.1. cd frontend
-    2.2. npm run dev ("npm install" first if it says vite is not recognized)
-3. go to "localhost:8080" (login's/signup's won't work on localhost:5173)
+2. go to "localhost:8080"

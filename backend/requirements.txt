@@ -4,5 +4,5 @@ flask-socketio
 gunicorn
 pymongo
 bcrypt
-eventlet  # For better WebSocket performance
-
+eventlet
+Pillow
