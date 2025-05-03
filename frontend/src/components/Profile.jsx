@@ -22,9 +22,11 @@ export default function Profile({ username, backToGame }) {
   const handleUpload = async e => {
     e.preventDefault();
     if (!file) return setMsg("Pick a file first");
+
     const form = new FormData();
     form.append("username", username);
     form.append("avatar", file);
+
     try {
       await axios.post('/api/auth/avatar', form, {
         headers: { 'Content-Type':'multipart/form-data' }

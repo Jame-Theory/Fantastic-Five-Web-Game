@@ -262,3 +262,359 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-05-03 16:33:05,966 [INFO] server responded to 172.20.0.5 with 200
 2025-05-03 16:33:09,479 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
 2025-05-03 16:33:09,482 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:36:47,935 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:36:48,314 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 16:37:32,901 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 16:37:33,281 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 17:23:56,811 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 17:23:56,839 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 17:24:05,641 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 17:24:05,792 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 17:24:05,804 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 17:24:05,807 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:35:04,335 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 18:35:04,755 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:35:50,940 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 18:35:50,947 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:35:59,017 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 18:35:59,034 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:35:59,046 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 18:35:59,049 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:36:16,678 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 18:36:16,681 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:36:26,085 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 18:36:26,108 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:36:26,119 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 18:36:26,121 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 18:37:09,995 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 18:37:10,374 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 19:04:42,009 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 19:04:42,398 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 19:05:22,977 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 19:05:23,358 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 19:10:01,734 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 19:10:02,120 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 19:11:09,694 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 19:11:10,070 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:29:05,684 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 21:29:06,107 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:29:20,254 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 21:29:20,637 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:29:51,700 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 21:29:51,704 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:30:10,592 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 21:30:10,619 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:30:10,630 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 21:30:10,633 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:31:13,274 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 21:31:13,654 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:32:31,611 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 21:32:31,616 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:32:41,232 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 21:32:41,242 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 21:32:41,258 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 21:32:41,261 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:05:42,378 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:05:42,385 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:05:54,078 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 22:05:54,094 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:05:54,108 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:05:54,111 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:05:54,127 [INFO] 172.20.0.5 GET /avatars/testuser_1746309954.png anonymous
+2025-05-03 22:05:54,131 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:06:44,710 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:06:44,715 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:07:14,484 [INFO] 172.20.0.5 GET /avatars/testuser_1746309954.png anonymous
+2025-05-03 22:07:14,488 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:08:22,720 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:08:22,724 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:08:27,658 [INFO] 172.20.0.5 GET /avatars/testuser_1746309954.png anonymous
+2025-05-03 22:08:27,660 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:22:45,865 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 22:22:46,248 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:22:49,821 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:22:49,824 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:22:49,837 [INFO] 172.20.0.5 GET /avatars/testuser_1746309954.png anonymous
+2025-05-03 22:22:49,839 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:22:58,668 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 22:22:58,684 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:22:58,698 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:22:58,700 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:22:58,713 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:22:58,717 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:32:52,285 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 22:32:52,680 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:32:52,814 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:52,816 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:54,942 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:54,944 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,039 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,040 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,157 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,158 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,204 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,205 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,314 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,315 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,428 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,429 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,666 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,667 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:55,785 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:55,786 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:56,278 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:56,279 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:56,386 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:56,387 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:56,775 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:56,776 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:56,891 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:56,892 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:57,496 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:57,497 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:57,754 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:57,755 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:57,868 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:57,869 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,097 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,098 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,212 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,213 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,316 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,317 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,423 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,424 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,598 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,600 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,636 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,637 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,735 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,737 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,926 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,927 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:58,943 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:58,944 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:59,149 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:59,150 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:59,358 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:59,359 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:59,574 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:59,575 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:59,666 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:59,667 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:59,766 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:59,767 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:32:59,948 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:32:59,949 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:00,332 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:33:00,333 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:00,652 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:33:00,654 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:00,773 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:33:00,774 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:00,868 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:33:00,869 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:01,079 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:33:01,080 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:05,768 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:33:05,772 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:33:05,797 [INFO] 172.20.0.5 GET /avatars/testuser_1746310978.png anonymous
+2025-05-03 22:33:05,798 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 22:33:15,102 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 22:33:15,117 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:33:15,131 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:33:15,134 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:33:15,148 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 22:33:15,151 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:33:48,698 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 22:33:49,079 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:34:02,030 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:34:02,035 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:34:15,142 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 22:34:15,147 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:34:15,161 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:34:15,163 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:34:15,179 [INFO] 172.20.0.5 GET /avatars/userna_1746311655.jpg anonymous
+2025-05-03 22:34:15,180 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:34:17,112 [INFO] 172.20.0.5 GET /avatars/userna_1746311655.jpg anonymous
+2025-05-03 22:34:17,113 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:34:25,169 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 22:34:25,170 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:35:12,155 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 22:35:12,537 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:35:12,669 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 22:35:12,671 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:35:20,013 [INFO] 172.20.0.5 GET /avatars/userna_1746311655.jpg anonymous
+2025-05-03 22:35:20,014 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:39:32,846 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:39:32,849 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:39:41,533 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 22:39:41,540 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:39:41,551 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:39:41,553 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:39:41,565 [INFO] 172.20.0.5 GET /avatars/userna_1746311981.png anonymous
+2025-05-03 22:39:41,566 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:39:43,462 [INFO] 172.20.0.5 GET /avatars/userna_1746311981.png anonymous
+2025-05-03 22:39:43,464 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 22:41:02,330 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:41:02,334 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:48:35,280 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 22:48:35,666 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:48:43,255 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:48:43,260 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:48:53,574 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 22:48:53,600 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:48:53,617 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 22:48:53,620 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:48:53,637 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 22:48:53,639 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 22:49:01,130 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 22:49:01,131 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 23:03:47,203 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:47,205 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:03:58,099 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:58,101 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:03:58,204 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:58,205 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:03:58,835 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:58,836 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:03:59,139 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:59,141 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:03:59,257 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:59,259 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:03:59,820 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:03:59,825 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:00,295 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:00,296 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:00,406 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:00,408 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:00,521 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:00,522 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:00,620 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:00,622 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:00,834 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:00,836 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:01,323 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:01,324 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:01,445 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:01,446 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:01,545 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:01,546 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:01,642 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:01,643 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:01,887 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:01,888 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,007 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,009 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,099 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,101 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,222 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,224 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,320 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,321 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,421 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,423 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,656 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,657 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:02,764 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:02,766 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:14,712 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 23:04:15,096 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:04:15,207 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:15,208 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:20,382 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:20,385 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:20,482 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:20,485 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:21,483 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:21,485 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:22,255 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:22,257 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:22,969 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:22,971 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:23,520 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:23,523 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:24,070 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:24,071 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:24,182 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:24,185 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:24,964 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:24,965 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:25,234 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:25,235 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:25,343 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:25,345 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:25,620 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:25,621 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:26,056 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:26,058 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:26,236 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:26,238 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:26,492 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:26,493 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:27,005 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:27,006 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:27,353 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:27,355 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:27,688 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:27,689 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:28,078 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:28,080 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:38,411 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 23:04:38,794 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:04:38,917 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:38,918 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:38,922 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:38,926 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:38,930 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:38,931 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:42,844 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 23:04:42,848 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:04:42,865 [INFO] 172.20.0.5 GET /avatars/testuser_1746311595.png anonymous
+2025-05-03 23:04:42,866 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:04:52,915 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 23:04:52,921 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:04:52,932 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 23:04:52,935 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:04:52,948 [INFO] 172.20.0.5 GET /avatars/testuser_1746313492.png anonymous
+2025-05-03 23:04:52,950 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:04:55,391 [INFO] 172.20.0.5 GET /avatars/testuser_1746313492.png anonymous
+2025-05-03 23:04:55,393 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 23:04:55,436 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:04:55,438 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:05:14,076 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 23:05:14,081 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:05:14,099 [INFO] 172.20.0.5 GET /avatars/userna2_1746312533.jpg anonymous
+2025-05-03 23:05:14,101 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:05:41,588 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 23:05:41,604 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:05:41,618 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 23:05:41,622 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:05:41,635 [INFO] 172.20.0.5 GET /avatars/userna2_1746313541.jpg anonymous
+2025-05-03 23:05:41,637 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:05:45,959 [INFO] 172.20.0.5 GET /avatars/userna2_1746313541.jpg anonymous
+2025-05-03 23:05:45,961 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 23:06:21,938 [INFO] 172.20.0.5 GET /avatars/testuser_1746313492.png anonymous
+2025-05-03 23:06:21,940 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 23:11:52,054 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 23:11:52,439 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:11:52,580 [INFO] 172.20.0.5 GET /avatars/testuser_1746313492.png anonymous
+2025-05-03 23:11:52,582 [INFO] server responded to 172.20.0.5 with 304
+2025-05-03 23:20:45,431 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 23:20:45,839 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:20:45,955 [INFO] 172.20.0.5 GET /avatars/testuser_1746313492.png anonymous
+2025-05-03 23:20:45,957 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:20:51,653 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 23:20:51,657 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:20:51,676 [INFO] 172.20.0.5 GET /avatars/testuser_1746313492.png anonymous
+2025-05-03 23:20:51,678 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:21:00,605 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-03 23:26:07,073 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-03 23:26:07,466 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:26:07,582 [INFO] 172.20.0.5 GET /avatars/testuser_1746314460.png anonymous
+2025-05-03 23:26:07,584 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:26:12,154 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-03 23:26:12,159 [INFO] server responded to 172.20.0.5 with 200
+2025-05-03 23:26:12,185 [INFO] 172.20.0.5 GET /avatars/testuser_1746314460.png anonymous
+2025-05-03 23:26:12,187 [INFO] server responded to 172.20.0.5 with 404
+2025-05-03 23:26:23,504 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous

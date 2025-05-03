@@ -100,9 +100,12 @@ def handle_join(data):
 
     # FOR AVATARS: get avatar for user
     # inside your handle_join(), right after players[username] = { … }
-    user_doc = users_collection.find_one({"username": username}, {"avatar": 1, "avatar_content_type": 1})
+    user_doc = users_collection.find_one(
+        {"username": username},
+        {"avatar": 1})
     if user_doc and user_doc.get("avatar"):
-        uri = f"data:{user_doc['avatar_content_type']};base64,{user_doc['avatar']}"
+        # uri = f"data:{user_doc['avatar_content_type']};base64,{user_doc['avatar']}"
+        uri = user_doc.get("avatar")
     else:
         uri = None
     players[username]["avatar"] = uri
@@ -193,13 +196,6 @@ def handle_move(data):
     grid_owner[cell_key] = username
 
     # 3) broadcast both the move AND the paint
-    # broadcast to everyone in room (including tabs with same account)
-    # emit('player_moved', {
-    #     'username': username,
-    #     'position': new_pos,
-    #     'color': players[username]['color']
-    # }, room=room)
-
     emit('player_moved', {
         'username': username,
         'position': new_pos,

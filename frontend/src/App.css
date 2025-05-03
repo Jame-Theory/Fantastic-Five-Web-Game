@@ -7,17 +7,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ensure the root can ever be 100% tall */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;    /* hide any unexpected scroll */
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  max-width: 800px;
+  /*max-width: 800px;*/
+  height: 100%;
   margin: 0 auto;
-  padding: 20px;
+  max-width: none;
+  /*padding: 20px;*/
 }
 
 .App-header {
+  flex: 0 0 85px;      /* fix your header to 60px tall (or whatever you prefer) */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 1rem;
   /*margin-bottom: 40px;*/
 }
 
@@ -73,8 +87,30 @@ body {
   margin-bottom: 15px;
 }
 
+main {
+  flex: 1 1 auto;      /* fill the rest of the height */
+  display: flex;
+  overflow: hidden;     /* no scroll here */
+}
+
 .game-container {
-  text-align: center;
+  flex: 1 1 auto;      /* stretch to fill main */
+  display: flex;
+  overflow: hidden;
+  /*height: calc(100vh - !* your header height *! 110px);*/
+  /* you can also do `top:60px; bottom:0; position:absolute; width:100%;` */
+  /*text-align: center;*/
+}
+
+.game-container canvas {
+  flex-shrink: 0;
+  /* we’ll size this in JS so it’s exactly VIEW_COLS×VIEW_ROWS cells */
+  border: 1px solid #000;
+}
+.leaderboard {
+  overflow-y: auto;
+  margin-left: 20px;
+  text-align: left;
 }
 
 .connection-warning {

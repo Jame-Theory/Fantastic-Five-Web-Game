@@ -6,7 +6,6 @@ export default defineConfig({
   base: '/',
   plugins: [react()],
   server: {
-    // port: 8080, // !!!!!!!!!!!!!!!!!!!!!
     proxy: {
       '/api': { //  Proxy requests starting with /api
         target: 'http://localhost:5000',
@@ -16,6 +15,11 @@ export default defineConfig({
       '/socket.io': {
         target: 'ws://localhost:5000',
         ws: true,
+        changeOrigin: true,
+        secure: false
+      },
+      '/avatars': {
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false
       }

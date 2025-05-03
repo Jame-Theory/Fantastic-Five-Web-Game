@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@react-hook/resize-observer": "^2.0.2",
+    "react-easy-crop": "^5.4.1"
+  }
+}

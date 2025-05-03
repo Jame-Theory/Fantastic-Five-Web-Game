@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
+import useResizeObserver from '@react-hook/resize-observer';
 
 function GameCanvas({ username }) {
   const canvasRef = useRef(null);
@@ -38,9 +39,24 @@ function GameCanvas({ username }) {
   // key = 'x,y' → { username, color }
   const [leaderboard, setLeaderboard] = useState([]);
 
+  const containerRef = useRef(null);
+  const [gridSize, setGridSize] = useState(20);
+
   const WORLD_COLS = 100, WORLD_ROWS = 100;
   const VIEW_COLS  =  25, VIEW_ROWS  =  25;
-  const gridSize = 20;
+  // const gridSize = 20;
+
+  // whenever the container’s height changes, recalc cell size:
+  useResizeObserver(containerRef, () => {
+    const height = containerRef.current.clientHeight;
+    const width  = containerRef.current.clientWidth - 135/* leaderboard width */;
+    // choose cell size to exactly fit VIEW_ROWS in height:
+    const sizeBasedOnHeight = Math.floor(height / VIEW_ROWS);
+    // or fit VIEW_COLS in width:
+    const sizeBasedOnWidth  = Math.floor(width  / VIEW_COLS);
+    // pick the smaller so we don’t overflow:
+    setGridSize(Math.min(sizeBasedOnHeight, sizeBasedOnWidth));
+  });
 
   // helper function for leaderboard
   function recomputeLeaderboard(gridMap) {
@@ -105,10 +121,6 @@ function GameCanvas({ username }) {
       if (data.username === username) return; // for when user logs in 2x
 
       // console.log('⬆️ player_joined:', data);
-      // setPlayers(prev => ({
-      //   ...prev,
-      //   [data.username]: { position: data.position, color: data.color }
-      // }));
 
       // FOR AVATARS
       setPlayers(prev => ({
@@ -123,8 +135,14 @@ function GameCanvas({ username }) {
       // cache their avatar image
       if (data.avatar) {
         const img = new Image();
+        img.onload = () => {
+          avatarImages.current[data.username] = img;
+        };
+        img.onerror = () => {
+          console.warn(`Failed to load avatar for ${data.username}`);
+          delete avatarImages.current[data.username];
+        };
         img.src = data.avatar;
-        avatarImages.current[data.username] = img;
       }
       /////////////////////////////////////
 
@@ -152,11 +170,17 @@ function GameCanvas({ username }) {
       if (data.username === username) { // for when user logs in 2x
         setPosition(data.position);
 
+        //   // in case avatar changed
         if (data.avatar) {
-          // in case avatar changed
           const img = new Image();
+          img.onload = () => {
+            avatarImages.current[data.username] = img;
+          };
+          img.onerror = () => {
+            console.warn(`Failed to load avatar for ${data.username}`);
+            delete avatarImages.current[data.username];
+          };
           img.src = data.avatar;
-          avatarImages.current[data.username] = img;
         }
 
         // these players are always on backend map, so "keep it fresh"
@@ -164,10 +188,6 @@ function GameCanvas({ username }) {
 
       } else {
         // console.log('➡️ player_moved:', data);
-        // setPlayers(prev => ({
-        //   ...prev,
-        //   [data.username]: { position: data.position, color: data.color }
-        // }));
 
         // CHANGED FOR AVATARS
         setPlayers(prev => ({
@@ -179,10 +199,17 @@ function GameCanvas({ username }) {
           }
         }));
 
+        // cache image
         if (data.avatar) {
           const img = new Image();
+          img.onload = () => {
+            avatarImages.current[data.username] = img;
+          };
+          img.onerror = () => {
+            console.warn(`Failed to load avatar for ${data.username}`);
+            delete avatarImages.current[data.username];
+          };
           img.src = data.avatar;
-          avatarImages.current[data.username] = img;
         }
 
         ///////////////////////////////
@@ -193,12 +220,6 @@ function GameCanvas({ username }) {
 
     const onGameState = (data) => {
       // console.log('📦 game_state:', data);
-      // const map = {};
-      // data.players.forEach(p => {
-      //   if (p.username === username) return;
-      //   map[p.username] = { position: p.position, color: p.color };
-      // });
-      // setPlayers(map);
 
       // FOR AVATARS
       const map = {};
@@ -209,11 +230,18 @@ function GameCanvas({ username }) {
           color:    p.color,
           avatar:   p.avatar
         };
+
         // cache each avatar
         if (p.avatar) {
           const img = new Image();
+          img.onload = () => {
+            avatarImages.current[p.username] = img;
+          };
+          img.onerror = () => {
+            console.warn(`Failed to load avatar for ${p.username}`);
+            delete avatarImages.current[p.username];
+          };
           img.src = p.avatar;
-          avatarImages.current[p.username] = img;
         }
       });
       setPlayers(map);
@@ -235,12 +263,17 @@ function GameCanvas({ username }) {
       setSelfColor(data.color);
       setPosition(data.position);
 
-      // store our avatar
       if (data.avatar) {
-        setSelfAvatar(data.avatar);
         const img = new Image();
+        img.onload = () => {
+          avatarImages.current[data.username] = img;
+        };
+        img.onerror = () => {
+          console.warn(`Failed to load avatar for ${data.username}`);
+          delete avatarImages.current[data.username];
+        };
+        setSelfAvatar(data.avatar);
         img.src = data.avatar;
-        avatarImages.current[username] = img;
       }
 
       // Paint starting cell immediately
@@ -467,21 +500,18 @@ function GameCanvas({ username }) {
       const px = (pos.x - camX) * gridSize;
       const py = (pos.y - camY) * gridSize;
 
-      const imgMap = isSelf
-        ? { [username]: selfAvatar }
-        : players;
+      // 1) Choose the right <img> ref:
+      //    - if it's you, use the one under your own username
+      //    - otherwise, use the one keyed by that other user's name
+      const key = isSelf ? username : u;
+      const img = avatarImages.current[key];
 
-      const avatarData = isSelf
-        ? selfAvatar
-        : players[u]?.avatar;
-
-      // fill square
-      // ctx.fillStyle = color;
-      // ctx.fillRect(px, py, gridSize, gridSize);
-      if (avatarData && avatarImages.current[u]?.complete) {
-        ctx.drawImage(avatarImages.current[u], px, py, gridSize, gridSize);
+      // 2) Only draw it once it's fully loaded and valid:
+      if (img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+        ctx.drawImage(img, px, py, gridSize, gridSize);
       } else {
-        ctx.fillStyle = color;
+        // fallback to a solid-colored square
+        ctx.fillStyle = isSelf ? selfColor : color;
         ctx.fillRect(px, py, gridSize, gridSize);
       }
 
@@ -512,7 +542,7 @@ function GameCanvas({ username }) {
   }, [grid, players, position, selfColor, username]);
 
   return (
-    <div className="game-container" style={{display:'flex'}}>
+    <div className="game-container" ref={containerRef}>
       {/*<h2>Game Canvas</h2>*/}
       {/*<p>Use arrow keys to move. Other players will see you moving.</p>*/}
       {!isConnected && (
@@ -523,11 +553,10 @@ function GameCanvas({ username }) {
           ref={canvasRef}
           width={VIEW_COLS * gridSize}
           height={VIEW_ROWS * gridSize}
-          style={{ border: '1px solid #000' }}
         />
       </div>
 
-      <div className="leaderboard" style={{marginLeft:20, textAlign:'left'}}>
+      <div className="leaderboard">
         <h3>Leaderboard</h3>
         <ol>
           {leaderboard.map(({user,count}) => (
@@ -548,13 +577,6 @@ function GameCanvas({ username }) {
             </li>
           ))}
 
-          {/*{leaderboard.map(({user,count}) => (*/}
-          {/*  <li key={user}>*/}
-          {/*    <span style={{color: players[user]?.color || selfColor || '#000'}}>*/}
-          {/*      {user}*/}
-          {/*    </span>: {count}*/}
-          {/*  </li>*/}
-          {/*))}*/}
         </ol>
       </div>
     </div>

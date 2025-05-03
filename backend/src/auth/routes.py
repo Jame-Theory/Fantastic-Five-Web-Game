@@ -1,6 +1,7 @@
 # backend/auth/routes.py
 from flask import Blueprint, request, jsonify
 import bcrypt
+import os
 import datetime
 
 # from db import users_collection
@@ -58,24 +59,35 @@ def login():
 
 # FOR AVATARS
 
-import io, base64
+import io, base64, time
 from PIL import Image
-from flask import current_app
+from flask import current_app, url_for
+from werkzeug.utils import secure_filename
+from game.routes import players
+from extensions import socketio
+
+ALLOWED = {'png','jpg','jpeg'}
+
+def allowed_file(fname):
+    return '.' in fname and fname.rsplit('.',1)[1].lower() in ALLOWED
 
 @auth_bp.route('/profile', methods=['GET'])
 def get_profile():
     """Return the current user's avatar as a data URL."""
-    # You already have { username } in React state post-login.
-    # Here we read it from the request JSON (or you can swap in session/JWT auth).
     username = request.args.get('username')
     if not username:
         return jsonify(error="username required"), 400
 
-    user = users_collection.find_one({"username": username}, {"avatar":1, "avatar_content_type":1})
-    if not user or not user.get("avatar"):
-        return jsonify(avatar=None)
-    data_url = f"data:{user.get('avatar_content_type','image/png')};base64,{user['avatar']}"
-    return jsonify(avatar=data_url)
+    user = users_collection.find_one(
+        {"username": username},
+        {"avatar": 1}
+    )
+
+    return jsonify(avatar=(user.get('avatar') if user else None)), 200
+    # if not user or not user.get("avatar_url"):
+    #     return jsonify(avatar=None)
+    # data_url = f"data:{user.get('avatar_content_type','image/png')};base64,{user['avatar']}"
+    # return jsonify(avatar_url=user.get('avatar_url'))
 
 @auth_bp.route('/avatar', methods=['POST'])
 def upload_avatar():
@@ -84,41 +96,59 @@ def upload_avatar():
     username = request.form.get("username")
     if not username:
         return jsonify(error="username required"), 400
-    if "avatar" not in request.files:
-        return jsonify(error="No file part"), 400
+
+    # if "avatar" not in request.files:
+    #     return jsonify(error="No file part"), 400
 
     file = request.files["avatar"]
-    if file.filename == "":
-        return jsonify(error="No selected file"), 400
+    if not file or not allowed_file(file.filename):
+        return jsonify(error='Bad file'), 400
 
-    # validate extension
-    ext = file.filename.rsplit(".",1)[-1].lower()
-    if ext not in ("png","jpg","jpeg"):
-        return jsonify(error="Only PNG/JPG allowed"), 400
+    # if file.filename == "":
+    #     return jsonify(error="No selected file"), 400
+    #
+    # # validate extension
+    # ext = file.filename.rsplit(".",1)[-1].lower()
+    # if ext not in ("png","jpg","jpeg"):
+    #     return jsonify(error="Only PNG/JPG allowed"), 400
 
-    # open & process
-    img = Image.open(file.stream)
-    w,h = img.size
-    m = min(w,h)
-    # center crop to square
-    left,top = (w-m)//2, (h-m)//2
-    img = img.crop((left, top, left+m, top+m))
-    # resize to your tile size (e.g. 64×64)
-    tile = current_app.config.get("TILE_SIZE", 64)
-    # img = img.resize((tile,tile), Image.ANTIALIAS)
-    img = img.resize((tile, tile), resample=Image.LANCZOS)
+    # — Crop & resize on the server if you like —
+    # load with PIL.Image.open(file.stream), apply .crop() or .thumbnail()
 
-    # encode as PNG
-    buf = io.BytesIO()
-    img.save(buf, format="PNG")
-    b64 = base64.b64encode(buf.getvalue()).decode("ascii")
+    # save to disk
+    # filename = secure_filename(f"{username.username}_{int(time.time())}.{file.filename.rsplit('.', 1)[1]}")
+    ext = file.filename.rsplit('.', 1)[1].lower()
+    filename = secure_filename(f"{username}_{int(time.time())}.{ext}")
 
-    # store in Mongo
+    out_dir = os.path.join(current_app.static_folder, 'avatars')
+    os.makedirs(out_dir, exist_ok=True)
+    path = os.path.join(out_dir, filename)
+    file.save(path)
+
+    # store (relative) URL in MongoDB:
+    # avatar_url = url_for('serve_avatar', filename=filename, _external=True)
+    avatar_url = f"/avatars/{filename}"
     users_collection.update_one(
-      {"username":username},
-      {"$set":{
-         "avatar": b64,
-         "avatar_content_type":"image/png"
-       }}
+        {'username': username},
+        {'$set': {'avatar': avatar_url}}
     )
-    return jsonify(message="Avatar uploaded"), 200
+
+    # also update in-memory player map so new joins get the URL
+    # players[username.username]['avatar'] = avatar_url
+    if username in players:
+        players[username]['avatar'] = avatar_url
+
+    # broadcast to everyone that changed avatar
+    # re-emit a “player_moved” (re-using that handler) with the exact same pos but
+    # now carrying the new avatar URL.  Clients already listen for this and will
+    # update their local players[u].avatar and cache the image immediately.
+    player = players.get(username)
+    if player:
+        socketio.emit('player_moved', {
+            'username': username,
+            'position': player['position'],
+            'color': player['color'],
+            'avatar': avatar_url
+        }, room='main')
+
+    return jsonify(avatar=avatar_url), 200

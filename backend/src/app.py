@@ -1,11 +1,15 @@
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request, session, send_from_directory
 from flask_cors import CORS
+
 # from flask_socketio import SocketIO
+
 from db import db
 # from database import db
+
 import logging
 import os
 import traceback
+
 from datetime import datetime
 from log_path import setup_loggers
 from test_bp import test
@@ -15,20 +19,30 @@ from game.routes import game_bp
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
-# app = Flask(__name__)
-# CORS(app)
-
 from extensions import socketio
-# Create but don't initialize the extensions yet
-# socketio = SocketIO()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(
+        __name__,
+        static_url_path='',
+        static_folder='public')
+
     app.config['SECRET_KEY'] = 'your-secret-key'  # Change this in production
+
+    # Make sure the folder exists on disk:
+    os.makedirs(os.path.join(app.static_folder, 'avatars'), exist_ok=True)
 
     # Initialize extensions
     CORS(app)
     socketio.init_app(app, cors_allowed_origins="*", path='/socket.io')
+
+    @app.route('/avatars/<filename>')
+    def serve_avatar(filename):
+        # will serve from public/avatars/filename
+        return send_from_directory(
+            os.path.join(app.static_folder, 'avatars'),
+            filename
+        )
 
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
