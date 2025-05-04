@@ -84,10 +84,6 @@ def get_profile():
     )
 
     return jsonify(avatar=(user.get('avatar') if user else None)), 200
-    # if not user or not user.get("avatar_url"):
-    #     return jsonify(avatar=None)
-    # data_url = f"data:{user.get('avatar_content_type','image/png')};base64,{user['avatar']}"
-    # return jsonify(avatar_url=user.get('avatar_url'))
 
 @auth_bp.route('/avatar', methods=['POST'])
 def upload_avatar():
@@ -103,14 +99,6 @@ def upload_avatar():
     file = request.files["avatar"]
     if not file or not allowed_file(file.filename):
         return jsonify(error='Bad file'), 400
-
-    # if file.filename == "":
-    #     return jsonify(error="No selected file"), 400
-    #
-    # # validate extension
-    # ext = file.filename.rsplit(".",1)[-1].lower()
-    # if ext not in ("png","jpg","jpeg"):
-    #     return jsonify(error="Only PNG/JPG allowed"), 400
 
     # — Crop & resize on the server if you like —
     # load with PIL.Image.open(file.stream), apply .crop() or .thumbnail()

@@ -106,7 +106,10 @@ export default function Profile({ username, backToGame }) {
 
           {/* 2) a little zoom slider */}
           <div
+              className="zoom-slider"
               style={{
+                position: 'relative', // establish a new stacking context
+                zIndex: 10, // high enough to sit on top of the cropper
                 margin: '1rem 0',
                 textAlign:'center'
               }}>
@@ -118,30 +121,11 @@ export default function Profile({ username, backToGame }) {
               step={0.1}
               value={zoom}
               onChange={e => setZoom(Number(e.target.value))}
+              style={{ position: 'relative', zIndex: 11 }}
             />
           </div>
         </>
       )}
-
-      {/*{imageSrc && (*/}
-      {/*  <div*/}
-      {/*      style={{*/}
-      {/*        position:'relative',*/}
-      {/*        background: '#333',*/}
-      {/*        width:300,*/}
-      {/*        height:300*/}
-      {/*      }}>*/}
-      {/*    <Cropper*/}
-      {/*      image={imageSrc}*/}
-      {/*      crop={crop}*/}
-      {/*      zoom={zoom}*/}
-      {/*      aspect={1}*/}
-      {/*      onCropChange={setCrop}*/}
-      {/*      onZoomChange={setZoom}*/}
-      {/*      onCropComplete={(_, pixels) => setCroppedAreaPixels(pixels)}*/}
-      {/*    />*/}
-      {/*  </div>*/}
-      {/*)}*/}
 
       <form onSubmit={handleUpload}>
         <input

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { io } from 'socket.io-client';
 import useResizeObserver from '@react-hook/resize-observer';
 
@@ -47,16 +47,37 @@ function GameCanvas({ username }) {
   // const gridSize = 20;
 
   // whenever the container’s height changes, recalc cell size:
-  useResizeObserver(containerRef, () => {
+  // useResizeObserver(containerRef, () => {
+  //   const height = containerRef.current.clientHeight;
+  //   const width  = containerRef.current.clientWidth - 135/* leaderboard width */;
+  //   // choose cell size to exactly fit VIEW_ROWS in height:
+  //   const sizeBasedOnHeight = Math.floor(height / VIEW_ROWS);
+  //   // or fit VIEW_COLS in width:
+  //   const sizeBasedOnWidth  = Math.floor(width  / VIEW_COLS);
+  //   // pick the smaller so we don’t overflow:
+  //   setGridSize(Math.min(sizeBasedOnHeight, sizeBasedOnWidth));
+  // });
+
+  // pull our sizing logic into a function we can call on mount, on shrink, or on window resize
+  const recalcGridSize = useCallback(() => {
+    if (!containerRef.current) return;
     const height = containerRef.current.clientHeight;
-    const width  = containerRef.current.clientWidth - 135/* leaderboard width */;
-    // choose cell size to exactly fit VIEW_ROWS in height:
+    // subtract your leaderboard width (or any padding)
+    const width  = containerRef.current.clientWidth - 150;
     const sizeBasedOnHeight = Math.floor(height / VIEW_ROWS);
-    // or fit VIEW_COLS in width:
     const sizeBasedOnWidth  = Math.floor(width  / VIEW_COLS);
-    // pick the smaller so we don’t overflow:
     setGridSize(Math.min(sizeBasedOnHeight, sizeBasedOnWidth));
-  });
+  }, [VIEW_ROWS, VIEW_COLS]);
+
+  // 1) run once on mount, 2) listen for window.resize
+  useEffect(() => {
+    recalcGridSize();
+    window.addEventListener('resize', recalcGridSize);
+    return () => window.removeEventListener('resize', recalcGridSize);
+  }, [recalcGridSize]);
+
+  // 3) still catch rapid container‐box shrinks via ResizeObserver
+  useResizeObserver(containerRef, recalcGridSize);
 
   // helper function for leaderboard
   function recomputeLeaderboard(gridMap) {
@@ -231,15 +252,15 @@ function GameCanvas({ username }) {
     };
 
     const onGameState = (data) => {
-      console.log('📦 game_state:', data);
-      console.log("onGameState payload", data.players);
+      // console.log('📦 game_state:', data);
+      // console.log("onGameState payload", data.players);
 
       // FOR AVATARS
       const map = {};
       data.players.forEach(p => {
         if (p.username === username) return;
 
-        console.log(`– player ${p.username} has avatar URL:`, p.avatar);
+        // console.log(`– player ${p.username} has avatar URL:`, p.avatar);
         map[p.username] = {
           position: p.position,
           color:    p.color,
@@ -251,7 +272,7 @@ function GameCanvas({ username }) {
           const img = new Image();
           img.onload = () => {
             avatarImages.current[p.username] = img;
-            console.log(`✓ cached avatar for ${p.username}`);
+            // console.log(`✓ cached avatar for ${p.username}`);
             // << poke React to re-draw now that the image is ready >>
             setPlayers(prev => ({ ...prev }));
           };
@@ -266,8 +287,8 @@ function GameCanvas({ username }) {
       });
       setPlayers(map);
 
-      console.log("→ players state is now", map);
-      console.log("→ avatarImages map is now", Object.keys(avatarImages.current));
+      // console.log("→ players state is now", map);
+      // console.log("→ avatarImages map is now", Object.keys(avatarImages.current));
       ///////////////////////////////
 
       // load *all* players’ colors at once
@@ -565,7 +586,7 @@ function GameCanvas({ username }) {
     // draw yourself on top
     drawPlayer(username, position, selfColor, true);
 
-  }, [grid, players, position, selfColor, username]);
+  }, [grid, players, position, selfColor, username, gridSize]);
 
   return (
     <div className="game-container" ref={containerRef}>
@@ -579,6 +600,10 @@ function GameCanvas({ username }) {
           ref={canvasRef}
           width={VIEW_COLS * gridSize}
           height={VIEW_ROWS * gridSize}
+          style={{
+            width:  `${VIEW_COLS * gridSize}px`,
+            height: `${VIEW_ROWS * gridSize}px`
+          }}
         />
       </div>
 
