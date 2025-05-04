@@ -137,10 +137,14 @@ function GameCanvas({ username }) {
         const img = new Image();
         img.onload = () => {
           avatarImages.current[data.username] = img;
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
         };
         img.onerror = () => {
           console.warn(`Failed to load avatar for ${data.username}`);
           delete avatarImages.current[data.username];
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
         };
         img.src = data.avatar;
       }
@@ -175,10 +179,14 @@ function GameCanvas({ username }) {
           const img = new Image();
           img.onload = () => {
             avatarImages.current[data.username] = img;
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
           };
           img.onerror = () => {
             console.warn(`Failed to load avatar for ${data.username}`);
             delete avatarImages.current[data.username];
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
           };
           img.src = data.avatar;
         }
@@ -204,10 +212,14 @@ function GameCanvas({ username }) {
           const img = new Image();
           img.onload = () => {
             avatarImages.current[data.username] = img;
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
           };
           img.onerror = () => {
             console.warn(`Failed to load avatar for ${data.username}`);
             delete avatarImages.current[data.username];
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
           };
           img.src = data.avatar;
         }
@@ -219,12 +231,15 @@ function GameCanvas({ username }) {
     };
 
     const onGameState = (data) => {
-      // console.log('📦 game_state:', data);
+      console.log('📦 game_state:', data);
+      console.log("onGameState payload", data.players);
 
       // FOR AVATARS
       const map = {};
       data.players.forEach(p => {
         if (p.username === username) return;
+
+        console.log(`– player ${p.username} has avatar URL:`, p.avatar);
         map[p.username] = {
           position: p.position,
           color:    p.color,
@@ -236,16 +251,23 @@ function GameCanvas({ username }) {
           const img = new Image();
           img.onload = () => {
             avatarImages.current[p.username] = img;
+            console.log(`✓ cached avatar for ${p.username}`);
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
           };
           img.onerror = () => {
             console.warn(`Failed to load avatar for ${p.username}`);
             delete avatarImages.current[p.username];
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
           };
           img.src = p.avatar;
         }
       });
       setPlayers(map);
 
+      console.log("→ players state is now", map);
+      console.log("→ avatarImages map is now", Object.keys(avatarImages.current));
       ///////////////////////////////
 
       // load *all* players’ colors at once
@@ -267,10 +289,14 @@ function GameCanvas({ username }) {
         const img = new Image();
         img.onload = () => {
           avatarImages.current[data.username] = img;
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
         };
         img.onerror = () => {
           console.warn(`Failed to load avatar for ${data.username}`);
           delete avatarImages.current[data.username];
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
         };
         setSelfAvatar(data.avatar);
         img.src = data.avatar;
