@@ -15,6 +15,7 @@ from log_path import setup_loggers
 from test_bp import test
 from auth.routes import auth_bp
 from game.routes import game_bp
+# from game.achievements import achievements_bp  # Uncomment if using separate blueprint
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -47,6 +48,7 @@ def create_app():
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(game_bp, url_prefix='/api/game')
+    # app.register_blueprint(achievements_bp, url_prefix='/api/game')  # Uncomment if using separate blueprint
     app.register_blueprint(test)
 
     # right before `return app`
@@ -79,9 +81,6 @@ def create_app():
         return response
 
     return app
-
-    ####################################
-
 
 if __name__ == '__main__':
     try:

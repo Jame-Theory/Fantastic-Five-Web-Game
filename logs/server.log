@@ -4324,3 +4324,45 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-05-04 15:45:09,253 [INFO] server responded to 172.18.0.4 with 201
 2025-05-04 15:45:09,259 [INFO] 172.18.0.4 POST /api/auth/login anonymous
 2025-05-04 15:45:09,443 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:27:47,056 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 16:27:47,061 [INFO] server responded to 172.18.0.4 with 409
+2025-05-04 16:27:52,014 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:27:52,017 [INFO] server responded to 172.18.0.4 with 401
+2025-05-04 16:28:01,039 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 16:28:01,251 [INFO] server responded to 172.18.0.4 with 201
+2025-05-04 16:28:01,257 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:28:01,442 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:28:01,454 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:28:01,454 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:30:58,727 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:30:58,936 [INFO] server responded to 172.18.0.4 with 401
+2025-05-04 16:31:03,350 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:31:03,566 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:31:03,578 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:31:03,579 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:31:42,168 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 16:31:42,382 [INFO] server responded to 172.18.0.4 with 201
+2025-05-04 16:31:42,387 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:31:42,572 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:31:42,585 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:31:42,585 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:32:39,051 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:32:39,264 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:32:39,276 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:32:39,277 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:38:34,479 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:38:34,690 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:38:34,704 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:38:34,705 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:39:10,842 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:39:11,054 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:39:11,066 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:39:11,067 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:40:04,037 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:40:04,248 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:40:04,258 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:40:04,259 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:40:50,960 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 16:40:51,173 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 16:40:51,192 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 16:40:51,193 [INFO] server responded to 172.18.0.4 with 200

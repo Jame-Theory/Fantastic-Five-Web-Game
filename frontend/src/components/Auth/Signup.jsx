@@ -7,7 +7,7 @@ function Signup({ setUser }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Password validation states
+  // Password validation states using gpt. created all of this.
   const [passwordChecks, setPasswordChecks] = useState({
     length: false,
     uppercase: false,
@@ -128,4 +128,5 @@ function Signup({ setUser }) {
   );
 }
 
+// adding some extra features later.
 export default Signup;

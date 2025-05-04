@@ -131,3 +131,28 @@ main {
   color: orange;
   font-weight: bold;
 }
+
+.achievements {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.achievement-check {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.achievement-check.achieved {
+  color: #4CAF50;
+}
+
+.achievement-check.not-achieved {
+  color: #f44336;
+}

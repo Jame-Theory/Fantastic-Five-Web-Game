@@ -1,5 +1,5 @@
 # backend/game/routes.py
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_socketio import emit, join_room, leave_room
 
 # from app import socketio
@@ -23,14 +23,15 @@ user_sids = {}
 # sid: username
 sid_to_user = {}
 
-# keep a record of painted cells: map “x,y” → username
-grid_owner: dict[str,str] = {}
+# keep a record of painted cells: map "x,y" → username
+grid_owner: dict[str, str] = {}
 
-WORLD_COLS = 25
-WORLD_ROWS = 25
+WORLD_COLS = 100
+WORLD_ROWS = 100
 
 # Keep one color per username (defunct?)
 user_colors = {}
+
 
 def generate_color(username):
     """Give each username a distinct hex color (first‐seen wins)."""
@@ -41,10 +42,12 @@ def generate_color(username):
     user_colors[username] = color
     return color
 
+
 # Register socket events
 @socketio.on('connect')
 def handle_connect():
     print(f"Client connected: {request.sid}")
+
 
 @socketio.on('disconnect')
 def handle_disconnect():
@@ -70,7 +73,6 @@ def handle_disconnect():
 
 @socketio.on('join_game')
 def handle_join(data):
-
     print(f"👉 handle_join called, sid={request.sid}, data={data}")
     # print("   players before:", players)
 
@@ -177,7 +179,6 @@ def handle_join(data):
 
 @socketio.on('move')
 def handle_move(data):
-
     # print(f"👉 handle_move called, sid={request.sid}, data={data}")
 
     sid = request.sid
@@ -209,3 +210,61 @@ def handle_move(data):
         'username': username,
         'color': players[username]['color']
     }, room=room)
+
+
+# New endpoint to handle achievements from client
+@socketio.on('update_achievements')
+def handle_achievement_update(data):
+    """Handle achievement updates from the client"""
+    username = data.get('username')
+    achievements = data.get('achievements')
+
+    if not username or not achievements:
+        return
+
+    # Update the achievements in the database
+    users_collection.update_one(
+        {"username": username},
+        {"$set": {"achievements": achievements}}
+    )
+
+    print(f"Updated achievements for {username}: {achievements}")
+
+    # Could emit an event to notify other tabs/clients if needed
+    # emit('achievements_updated', {'username': username, 'achievements': achievements}, room=username)
+
+
+# Add a REST endpoint to get achievements
+@game_bp.route('/achievements', methods=['GET'])
+def get_achievements():
+    """Get the achievements for a user."""
+    username = request.args.get('username')
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+
+    user = users_collection.find_one({"username": username})
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # If the user doesn't have achievements yet, return defaults
+    achievements = user.get('achievements', {
+        "fiftyPoints": False,
+        "hundredPoints": False,
+        "twoHundredPoints": False,
+        "allUnlocked": False
+    })
+
+    # If allUnlocked flag isn't present but should be based on other achievements
+    if "allUnlocked" not in achievements and all([
+        achievements.get("fiftyPoints", False),
+        achievements.get("hundredPoints", False),
+        achievements.get("twoHundredPoints", False)
+    ]):
+        achievements["allUnlocked"] = True
+        # Update the database with the computed allUnlocked status
+        users_collection.update_one(
+            {"username": username},
+            {"$set": {"achievements": achievements}}
+        )
+
+    return jsonify({"achievements": achievements}), 200

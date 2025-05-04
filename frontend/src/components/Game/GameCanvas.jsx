@@ -39,6 +39,16 @@ function GameCanvas({ username }) {
   // key = 'x,y' → { username, color }
   const [leaderboard, setLeaderboard] = useState([]);
 
+  // Add achievements state
+  const [achievements, setAchievements] = useState({
+    fiftyPoints: false,
+    hundredPoints: false,
+    twoHundredPoints: false
+  });
+
+  // Add state for tracking whether all achievements are unlocked
+  const [allAchievementsUnlocked, setAllAchievementsUnlocked] = useState(false);
+
   const containerRef = useRef(null);
   const [gridSize, setGridSize] = useState(20);
 
@@ -46,7 +56,7 @@ function GameCanvas({ username }) {
   const VIEW_COLS  =  25, VIEW_ROWS  =  25;
   // const gridSize = 20;
 
-  // whenever the container’s height changes, recalc cell size:
+  // whenever the container's height changes, recalc cell size:
   // pull our sizing logic into a function we can call on mount, on shrink, or on window resize
   const recalcGridSize = useCallback(() => {
     if (!containerRef.current) return;
@@ -82,8 +92,71 @@ function GameCanvas({ username }) {
     const board = Object.entries(counts)
       .map(([user, count]) => ({ user, count }))
       .sort((a,b) => b.count - a.count);
+
+    // Check for achievements
+    const userCount = counts[username] || 0;
+    const newAchievements = {
+      fiftyPoints: userCount >= 50,
+      hundredPoints: userCount >= 100,
+      twoHundredPoints: userCount >= 200
+    };
+
+    // Check if all achievements are unlocked
+    const allUnlocked = newAchievements.fiftyPoints &&
+                        newAchievements.hundredPoints &&
+                        newAchievements.twoHundredPoints;
+
+    setAllAchievementsUnlocked(allUnlocked);
+
+    // If any achievements have changed, update them and save to server
+    if (newAchievements.fiftyPoints !== achievements.fiftyPoints ||
+        newAchievements.hundredPoints !== achievements.hundredPoints ||
+        newAchievements.twoHundredPoints !== achievements.twoHundredPoints ||
+        allUnlocked !== allAchievementsUnlocked) {
+
+      setAchievements(newAchievements);
+
+      // Send updated achievements to the server
+      if (socket && isConnected) {
+        socket.emit('update_achievements', {
+          username,
+          achievements: {
+            ...newAchievements,
+            allUnlocked: allUnlocked
+          }
+        });
+      }
+    }
+
     setLeaderboard(board);
   }
+
+  // Load saved achievements on component mount
+  useEffect(() => {
+    if (!username) return;
+
+    const loadAchievements = async () => {
+      try {
+        const response = await fetch(`/api/game/achievements?username=${username}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.achievements) {
+            setAchievements(data.achievements);
+
+            // Check if all achievements are unlocked
+            const allUnlocked = data.achievements.fiftyPoints &&
+                                data.achievements.hundredPoints &&
+                                data.achievements.twoHundredPoints;
+            setAllAchievementsUnlocked(allUnlocked);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load achievements:', error);
+      }
+    };
+
+    loadAchievements();
+  }, [username]);
 
   // Initialize socket connection
   useEffect(() => {
@@ -280,7 +353,7 @@ function GameCanvas({ username }) {
       // console.log("→ avatarImages map is now", Object.keys(avatarImages.current));
       ///////////////////////////////
 
-      // load *all* players’ colors at once
+      // load *all* players' colors at once
       setServerColors(prev => {
         const out = { ...prev };
         data.players.forEach(p => { out[p.username] = p.color; });
@@ -348,7 +421,7 @@ function GameCanvas({ username }) {
         return g;
       });
 
-      // palette update (in case someone’s color changed on the server)
+      // palette update (in case someone's color changed on the server)
       setServerColors(prev => ({ ...prev, [c.username]: c.color }));
     }
 
@@ -441,44 +514,6 @@ function GameCanvas({ username }) {
       dirRef.current = null;
     };
   }, [socket, isConnected]);
-
-
-  // old movement
-  // useEffect(() => {
-  //   const handleKeyDown = (e) => {
-  //     let newPosition = { ...position };
-  //
-  //     switch (e.key) {
-  //       case 'ArrowUp':
-  //         newPosition.y = newPosition.y - 1;
-  //         break;
-  //       case 'ArrowDown':
-  //         newPosition.y = newPosition.y + 1;
-  //         break;
-  //       case 'ArrowLeft':
-  //         newPosition.x = newPosition.x - 1;
-  //         break;
-  //       case 'ArrowRight':
-  //         newPosition.x = newPosition.x + 1;
-  //         break;
-  //       default:
-  //         return;
-  //     }
-  //
-  //     // clamp within 0 .. WORLD−1
-  //     newPosition.x = Math.max(0, Math.min(WORLD_COLS - 1, newPosition.x));
-  //     newPosition.y = Math.max(0, Math.min(WORLD_ROWS - 1, newPosition.y));
-  //
-  //     if (socket && isConnected) {
-  //       socket.emit('move', { position: newPosition });
-  //     }
-  //   };
-  //
-  //   window.addEventListener('keydown', handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [position, socket, isConnected]);
 
   // Draw the game
   useEffect(() => {
@@ -577,6 +612,18 @@ function GameCanvas({ username }) {
 
   }, [grid, players, position, selfColor, username, gridSize]);
 
+  // Achievement item component
+  const AchievementItem = ({ achieved, text }) => (
+    <div className="achievement-item">
+      {achieved ? (
+        <span className="achievement-check achieved">✓</span>
+      ) : (
+        <span className="achievement-check not-achieved">✗</span>
+      )}
+      <span>{text}</span>
+    </div>
+  );
+
   return (
     <div className="game-container" ref={containerRef}>
       {/*<h2>Game Canvas</h2>*/}
@@ -599,7 +646,7 @@ function GameCanvas({ username }) {
       <div className="leaderboard">
         <h3>Leaderboard</h3>
         <ol>
-          {leaderboard.map(({user,count}) => (
+          {leaderboard.map(({user, count}) => (
             <li
               key={user}
               style={{
@@ -616,11 +663,57 @@ function GameCanvas({ username }) {
               </span>: {count}
             </li>
           ))}
-
         </ol>
+
+        {/* Achievements section */}
+        <div className="achievements">
+          <h3>
+            Achievements
+            {allAchievementsUnlocked && (
+              <span className="trophy" style={{
+                marginLeft: '8px',
+                color: 'gold',
+                fontSize: '1.2em',
+                textShadow: '0 0 5px rgba(255, 215, 0, 0.7)'
+              }}>
+                🏆
+              </span>
+            )}
+          </h3>
+          <AchievementItem
+            achieved={achievements.fiftyPoints}
+            text="Achieve 50 Points"
+          />
+          <AchievementItem
+            achieved={achievements.hundredPoints}
+            text="Achieve 100 Points"
+          />
+          <AchievementItem
+            achieved={achievements.twoHundredPoints}
+            text="Achieve 200 Points"
+          />
+
+          {/* Show congratulation message when all achievements are unlocked */}
+          {allAchievementsUnlocked && (
+            <div
+              className="all-achievements-unlocked"
+              style={{
+                marginTop: '10px',
+                padding: '5px',
+                backgroundColor: 'rgba(0,64,255,0.39)',
+                borderRadius: '5px',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                color: 'gold',
+                textShadow: '0 0 2px rgba(0, 0, 0, 0.5)'
+              }}
+            >
+              All Achievements Unlocked!
+            </div>
+          )}
+        </div>
       </div>
     </div>
-
   );
 }
 
