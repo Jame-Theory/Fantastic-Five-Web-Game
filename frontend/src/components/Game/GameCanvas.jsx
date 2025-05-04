@@ -1,13 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { io } from 'socket.io-client';
+import useResizeObserver from '@react-hook/resize-observer';
 
 function GameCanvas({ username }) {
   const canvasRef = useRef(null);
+
+  // Ref-map: username → HTMLImageElement (avatars)
+  const avatarImages = useRef({});
+
   const [socket, setSocket] = useState(null);
   // const [players, setPlayers] = useState({});
 
   // now map username → { position: {x,y}, color: '#rrggbb' }
   const [players, setPlayers] = useState({});
+
+  // our own avatar data-URL
+  const [selfAvatar, setSelfAvatar] = useState(null);
 
   // our own color (comes from the server on join)
   const [selfColor, setSelfColor] = useState('#e74c3c');
@@ -25,16 +33,40 @@ function GameCanvas({ username }) {
   useEffect(() => { positionRef.current = position }, [position]);
 
 
-
   const [isConnected, setIsConnected] = useState(false);
 
   const [grid, setGrid] = useState({});
   // key = 'x,y' → { username, color }
   const [leaderboard, setLeaderboard] = useState([]);
 
+  const containerRef = useRef(null);
+  const [gridSize, setGridSize] = useState(20);
+
   const WORLD_COLS = 100, WORLD_ROWS = 100;
   const VIEW_COLS  =  25, VIEW_ROWS  =  25;
-  const gridSize = 20;
+  // const gridSize = 20;
+
+  // whenever the container’s height changes, recalc cell size:
+  // pull our sizing logic into a function we can call on mount, on shrink, or on window resize
+  const recalcGridSize = useCallback(() => {
+    if (!containerRef.current) return;
+    const height = containerRef.current.clientHeight;
+    // subtract your leaderboard width (or any padding)
+    const width  = containerRef.current.clientWidth - 150;
+    const sizeBasedOnHeight = Math.floor(height / VIEW_ROWS);
+    const sizeBasedOnWidth  = Math.floor(width  / VIEW_COLS);
+    setGridSize(Math.min(sizeBasedOnHeight, sizeBasedOnWidth));
+  }, [VIEW_ROWS, VIEW_COLS]);
+
+  // 1) run once on mount, 2) listen for window.resize
+  useEffect(() => {
+    recalcGridSize();
+    window.addEventListener('resize', recalcGridSize);
+    return () => window.removeEventListener('resize', recalcGridSize);
+  }, [recalcGridSize]);
+
+  // 3) still catch rapid container‐box shrinks via ResizeObserver
+  useResizeObserver(containerRef, recalcGridSize);
 
   // helper function for leaderboard
   function recomputeLeaderboard(gridMap) {
@@ -75,7 +107,7 @@ function GameCanvas({ username }) {
 
     if (!socket || !username) return;
 
-    console.log("🔗 setting up socket listeners, socket:", socket, "username:", username);
+    // console.log("🔗 setting up socket listeners, socket:", socket, "username:", username);
 
     const onConnect = () => {
       // console.log('✅ Connected to WebSocket server');
@@ -94,13 +126,39 @@ function GameCanvas({ username }) {
     };
 
     const onPlayerJoined = (data) => {
+      // data: { username, position, color, avatar }
+
       if (data.username === username) return; // for when user logs in 2x
 
       // console.log('⬆️ player_joined:', data);
+
+      // FOR AVATARS
       setPlayers(prev => ({
         ...prev,
-        [data.username]: { position: data.position, color: data.color }
+        [data.username]: {
+          position: data.position,
+          color: data.color,
+          avatar: data.avatar
+        }
       }));
+
+      // cache their avatar image
+      if (data.avatar) {
+        const img = new Image();
+        img.onload = () => {
+          avatarImages.current[data.username] = img;
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
+        };
+        img.onerror = () => {
+          // console.warn(`Failed to load avatar for ${data.username}`);
+          delete avatarImages.current[data.username];
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
+        };
+        img.src = data.avatar;
+      }
+      /////////////////////////////////////
 
       // Paint their starting cell immediately
       setGrid(prev => {
@@ -125,26 +183,102 @@ function GameCanvas({ username }) {
     const onPlayerMoved = (data) => {
       if (data.username === username) { // for when user logs in 2x
         setPosition(data.position);
+
+        //   // in case avatar changed
+        if (data.avatar) {
+          const img = new Image();
+          img.onload = () => {
+            avatarImages.current[data.username] = img;
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
+          };
+          img.onerror = () => {
+            // console.warn(`Failed to load avatar for ${data.username}`);
+            delete avatarImages.current[data.username];
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
+          };
+          img.src = data.avatar;
+        }
+
         // these players are always on backend map, so "keep it fresh"
         setServerColors(prev => ({ ...prev, [data.username]: data.color }));
+
       } else {
         // console.log('➡️ player_moved:', data);
+
+        // CHANGED FOR AVATARS
         setPlayers(prev => ({
           ...prev,
-          [data.username]: { position: data.position, color: data.color }
+          [data.username]: {
+            position: data.position,
+            color: data.color,
+            avatar: data.avatar
+          }
         }));
+
+        // cache image
+        if (data.avatar) {
+          const img = new Image();
+          img.onload = () => {
+            avatarImages.current[data.username] = img;
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
+          };
+          img.onerror = () => {
+            // console.warn(`Failed to load avatar for ${data.username}`);
+            delete avatarImages.current[data.username];
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
+          };
+          img.src = data.avatar;
+        }
+
+        ///////////////////////////////
+
         setServerColors(prev => ({ ...prev, [data.username]: data.color }));
       }
     };
 
     const onGameState = (data) => {
-      console.log('📦 game_state:', data);
+      // console.log('📦 game_state:', data);
+      // console.log("onGameState payload", data.players);
+
+      // FOR AVATARS
       const map = {};
       data.players.forEach(p => {
         if (p.username === username) return;
-        map[p.username] = { position: p.position, color: p.color };
+
+        // console.log(`– player ${p.username} has avatar URL:`, p.avatar);
+        map[p.username] = {
+          position: p.position,
+          color:    p.color,
+          avatar:   p.avatar
+        };
+
+        // cache each avatar
+        if (p.avatar) {
+          const img = new Image();
+          img.onload = () => {
+            avatarImages.current[p.username] = img;
+            // console.log(`✓ cached avatar for ${p.username}`);
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
+          };
+          img.onerror = () => {
+            // console.warn(`Failed to load avatar for ${p.username}`);
+            delete avatarImages.current[p.username];
+            // << poke React to re-draw now that the image is ready >>
+            setPlayers(prev => ({ ...prev }));
+          };
+          img.src = p.avatar;
+        }
       });
       setPlayers(map);
+
+      // console.log("→ players state is now", map);
+      // console.log("→ avatarImages map is now", Object.keys(avatarImages.current));
+      ///////////////////////////////
 
       // load *all* players’ colors at once
       setServerColors(prev => {
@@ -156,9 +290,27 @@ function GameCanvas({ username }) {
 
     // Our own initial data
     const onPlayerData = (data) => {
+      // data: { username, position, color, avatar }
       // console.log('🔖 player_data:', data);
       setSelfColor(data.color);
       setPosition(data.position);
+
+      if (data.avatar) {
+        const img = new Image();
+        img.onload = () => {
+          avatarImages.current[data.username] = img;
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
+        };
+        img.onerror = () => {
+          console.warn(`Failed to load avatar for ${data.username}`);
+          delete avatarImages.current[data.username];
+          // << poke React to re-draw now that the image is ready >>
+          setPlayers(prev => ({ ...prev }));
+        };
+        setSelfAvatar(data.avatar);
+        img.src = data.avatar;
+      }
 
       // Paint starting cell immediately
       setGrid(prev => {
@@ -291,7 +443,6 @@ function GameCanvas({ username }) {
   }, [socket, isConnected]);
 
 
-
   // old movement
   // useEffect(() => {
   //   const handleKeyDown = (e) => {
@@ -385,9 +536,20 @@ function GameCanvas({ username }) {
       const px = (pos.x - camX) * gridSize;
       const py = (pos.y - camY) * gridSize;
 
-      // fill square
-      ctx.fillStyle = color;
-      ctx.fillRect(px, py, gridSize, gridSize);
+      // 1) Choose the right <img> ref:
+      //    - if it's you, use the one under your own username
+      //    - otherwise, use the one keyed by that other user's name
+      const key = isSelf ? username : u;
+      const img = avatarImages.current[key];
+
+      // 2) Only draw it once it's fully loaded and valid:
+      if (img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+        ctx.drawImage(img, px, py, gridSize, gridSize);
+      } else {
+        // fallback to a solid-colored square
+        ctx.fillStyle = isSelf ? selfColor : color;
+        ctx.fillRect(px, py, gridSize, gridSize);
+      }
 
       // border
       ctx.strokeStyle = '#000';
@@ -413,10 +575,10 @@ function GameCanvas({ username }) {
     // draw yourself on top
     drawPlayer(username, position, selfColor, true);
 
-  }, [grid, players, position, selfColor, username]);
+  }, [grid, players, position, selfColor, username, gridSize]);
 
   return (
-    <div className="game-container" style={{display:'flex'}}>
+    <div className="game-container" ref={containerRef}>
       {/*<h2>Game Canvas</h2>*/}
       {/*<p>Use arrow keys to move. Other players will see you moving.</p>*/}
       {!isConnected && (
@@ -427,11 +589,14 @@ function GameCanvas({ username }) {
           ref={canvasRef}
           width={VIEW_COLS * gridSize}
           height={VIEW_ROWS * gridSize}
-          style={{ border: '1px solid #000' }}
+          style={{
+            width:  `${VIEW_COLS * gridSize}px`,
+            height: `${VIEW_ROWS * gridSize}px`
+          }}
         />
       </div>
 
-      <div className="leaderboard" style={{marginLeft:20, textAlign:'left'}}>
+      <div className="leaderboard">
         <h3>Leaderboard</h3>
         <ol>
           {leaderboard.map(({user,count}) => (
@@ -452,13 +617,6 @@ function GameCanvas({ username }) {
             </li>
           ))}
 
-          {/*{leaderboard.map(({user,count}) => (*/}
-          {/*  <li key={user}>*/}
-          {/*    <span style={{color: players[user]?.color || selfColor || '#000'}}>*/}
-          {/*      {user}*/}
-          {/*    </span>: {count}*/}
-          {/*  </li>*/}
-          {/*))}*/}
         </ol>
       </div>
     </div>
