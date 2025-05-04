@@ -4302,3 +4302,25 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-05-04 04:54:26,515 [INFO] server responded to 172.20.0.5 with 200
 2025-05-04 04:54:39,154 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
 2025-05-04 04:54:39,159 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 15:37:49,404 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 15:37:49,615 [INFO] server responded to 172.18.0.4 with 201
+2025-05-04 15:37:49,621 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 15:37:49,805 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 15:37:58,353 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 15:37:58,565 [INFO] server responded to 172.18.0.4 with 201
+2025-05-04 15:37:58,571 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 15:37:58,755 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 15:38:05,409 [INFO] 172.18.0.4 GET /api/auth/profile anonymous
+2025-05-04 15:38:05,413 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 15:44:16,681 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 15:44:16,685 [INFO] server responded to 172.18.0.4 with 409
+2025-05-04 15:44:34,249 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 15:44:34,462 [INFO] server responded to 172.18.0.4 with 201
+2025-05-04 15:44:34,465 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 15:44:34,651 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 15:44:50,603 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 15:44:50,812 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 15:45:09,038 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 15:45:09,253 [INFO] server responded to 172.18.0.4 with 201
+2025-05-04 15:45:09,259 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 15:45:09,443 [INFO] server responded to 172.18.0.4 with 200

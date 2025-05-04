@@ -19,6 +19,16 @@ def signup():
     if not username or not password:
         return jsonify({"error": "Username and password are required"}), 400
 
+    # Password validation
+    if len(password) < 8:
+        return jsonify({"error": "Password must be at least 8 characters"}), 400
+    if not any(c.isupper() for c in password):
+        return jsonify({"error": "Password must contain at least one uppercase letter"}), 400
+    if not any(c.islower() for c in password):
+        return jsonify({"error": "Password must contain at least one lowercase letter"}), 400
+    if not any(c in '!@#$%^&*(),.?":{}|<>' for c in password):
+        return jsonify({"error": "Password must contain at least one special character"}), 400
+
     # Check if username already exists
     if users_collection.find_one({"username": username}):
         return jsonify({"error": "Username already exists"}), 409

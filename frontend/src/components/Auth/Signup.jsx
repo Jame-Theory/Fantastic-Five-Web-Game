@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Signup({ setUser }) {
@@ -7,9 +7,35 @@ function Signup({ setUser }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Password validation states
+  const [passwordChecks, setPasswordChecks] = useState({
+    length: false,
+    uppercase: false,
+    lowercase: false,
+    specialChar: false,
+  });
+
+  // Validate password whenever it changes
+  useEffect(() => {
+    setPasswordChecks({
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    });
+  }, [password]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    // Check if all password requirements are met
+    const allChecksPassed = Object.values(passwordChecks).every(Boolean);
+    if (!allChecksPassed) {
+      setError('Password does not meet all requirements');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -31,6 +57,18 @@ function Signup({ setUser }) {
       setIsLoading(false);
     }
   };
+
+  // Helper component for validation indicators
+  const ValidationIndicator = ({ isValid, text }) => (
+    <div style={{ display: 'flex', alignItems: 'center', margin: '0.2rem 0' }}>
+      {isValid ? (
+        <span style={{ color: 'green', marginRight: '0.5rem' }}>✓</span>
+      ) : (
+        <span style={{ color: 'red', marginRight: '0.5rem' }}>✗</span>
+      )}
+      <span style={{ color: isValid ? 'green' : 'inherit' }}>{text}</span>
+    </div>
+  );
 
   return (
     <div className="auth-form">
@@ -56,8 +94,33 @@ function Signup({ setUser }) {
             required
             disabled={isLoading}
           />
+          <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
+            <ValidationIndicator
+              isValid={passwordChecks.length}
+              text="At least 8 characters"
+            />
+            <ValidationIndicator
+              isValid={passwordChecks.uppercase}
+              text="At least 1 uppercase letter"
+            />
+            <ValidationIndicator
+              isValid={passwordChecks.lowercase}
+              text="At least 1 lowercase letter"
+            />
+            <ValidationIndicator
+              isValid={passwordChecks.specialChar}
+              text="At least 1 special character"
+            />
+          </div>
         </div>
-        <button type="submit" disabled={isLoading}>
+        <button
+          type="submit"
+          disabled={isLoading || !Object.values(passwordChecks).every(Boolean)}
+          style={{
+            marginTop: '1rem',
+            opacity: Object.values(passwordChecks).every(Boolean) ? 1 : 0.7
+          }}
+        >
           {isLoading ? 'Creating account...' : 'Sign Up'}
         </button>
       </form>
