@@ -47,17 +47,6 @@ function GameCanvas({ username }) {
   // const gridSize = 20;
 
   // whenever the container’s height changes, recalc cell size:
-  // useResizeObserver(containerRef, () => {
-  //   const height = containerRef.current.clientHeight;
-  //   const width  = containerRef.current.clientWidth - 135/* leaderboard width */;
-  //   // choose cell size to exactly fit VIEW_ROWS in height:
-  //   const sizeBasedOnHeight = Math.floor(height / VIEW_ROWS);
-  //   // or fit VIEW_COLS in width:
-  //   const sizeBasedOnWidth  = Math.floor(width  / VIEW_COLS);
-  //   // pick the smaller so we don’t overflow:
-  //   setGridSize(Math.min(sizeBasedOnHeight, sizeBasedOnWidth));
-  // });
-
   // pull our sizing logic into a function we can call on mount, on shrink, or on window resize
   const recalcGridSize = useCallback(() => {
     if (!containerRef.current) return;
@@ -118,7 +107,7 @@ function GameCanvas({ username }) {
 
     if (!socket || !username) return;
 
-    console.log("🔗 setting up socket listeners, socket:", socket, "username:", username);
+    // console.log("🔗 setting up socket listeners, socket:", socket, "username:", username);
 
     const onConnect = () => {
       // console.log('✅ Connected to WebSocket server');
@@ -162,7 +151,7 @@ function GameCanvas({ username }) {
           setPlayers(prev => ({ ...prev }));
         };
         img.onerror = () => {
-          console.warn(`Failed to load avatar for ${data.username}`);
+          // console.warn(`Failed to load avatar for ${data.username}`);
           delete avatarImages.current[data.username];
           // << poke React to re-draw now that the image is ready >>
           setPlayers(prev => ({ ...prev }));
@@ -204,7 +193,7 @@ function GameCanvas({ username }) {
             setPlayers(prev => ({ ...prev }));
           };
           img.onerror = () => {
-            console.warn(`Failed to load avatar for ${data.username}`);
+            // console.warn(`Failed to load avatar for ${data.username}`);
             delete avatarImages.current[data.username];
             // << poke React to re-draw now that the image is ready >>
             setPlayers(prev => ({ ...prev }));
@@ -237,7 +226,7 @@ function GameCanvas({ username }) {
             setPlayers(prev => ({ ...prev }));
           };
           img.onerror = () => {
-            console.warn(`Failed to load avatar for ${data.username}`);
+            // console.warn(`Failed to load avatar for ${data.username}`);
             delete avatarImages.current[data.username];
             // << poke React to re-draw now that the image is ready >>
             setPlayers(prev => ({ ...prev }));
@@ -277,7 +266,7 @@ function GameCanvas({ username }) {
             setPlayers(prev => ({ ...prev }));
           };
           img.onerror = () => {
-            console.warn(`Failed to load avatar for ${p.username}`);
+            // console.warn(`Failed to load avatar for ${p.username}`);
             delete avatarImages.current[p.username];
             // << poke React to re-draw now that the image is ready >>
             setPlayers(prev => ({ ...prev }));

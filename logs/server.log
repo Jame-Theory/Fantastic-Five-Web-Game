@@ -4286,3 +4286,19 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-05-04 04:47:43,177 [INFO] server responded to 172.20.0.5 with 200
 2025-05-04 04:47:43,197 [INFO] 172.20.0.5 GET /avatars/userna_1746334063.png anonymous
 2025-05-04 04:47:43,201 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 04:54:06,836 [INFO] 172.20.0.5 POST /api/auth/login anonymous
+2025-05-04 04:54:07,225 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 04:54:07,375 [INFO] 172.20.0.5 GET /avatars/userna_1746334063.png anonymous
+2025-05-04 04:54:07,378 [INFO] server responded to 172.20.0.5 with 404
+2025-05-04 04:54:11,138 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-04 04:54:11,144 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 04:54:11,165 [INFO] 172.20.0.5 GET /avatars/userna_1746334063.png anonymous
+2025-05-04 04:54:11,167 [INFO] server responded to 172.20.0.5 with 404
+2025-05-04 04:54:26,434 [INFO] 172.20.0.5 POST /api/auth/avatar anonymous
+2025-05-04 04:54:26,461 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 04:54:26,474 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-04 04:54:26,477 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 04:54:26,512 [INFO] 172.20.0.5 GET /avatars/userna_1746334466.jpg anonymous
+2025-05-04 04:54:26,515 [INFO] server responded to 172.20.0.5 with 200
+2025-05-04 04:54:39,154 [INFO] 172.20.0.5 GET /api/auth/profile anonymous
+2025-05-04 04:54:39,159 [INFO] server responded to 172.20.0.5 with 200
