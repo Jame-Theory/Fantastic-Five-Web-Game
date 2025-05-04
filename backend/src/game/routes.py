@@ -268,3 +268,5 @@ def get_achievements():
         )
 
     return jsonify({"achievements": achievements}), 200
+
+# added achievements functionality here.

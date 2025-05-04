@@ -44,3 +44,5 @@ def update_achievements():
         return jsonify({"error": "User not found"}), 404
 
     return jsonify({"message": "Achievements updated successfully"}), 200
+
+#created this earlier for achievmenets backend.
