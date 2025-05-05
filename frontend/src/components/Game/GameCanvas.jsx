@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { io } from 'socket.io-client';
 import useResizeObserver from '@react-hook/resize-observer';
+import axios from 'axios';
 
 function GameCanvas({ username }) {
   const canvasRef = useRef(null);
@@ -9,7 +10,7 @@ function GameCanvas({ username }) {
   const avatarImages = useRef({});
 
   const [socket, setSocket] = useState(null);
-  // const [players, setPlayers] = useState({});
+  // const  a[players, setPlayers] = useState({});
 
   // now map username → { position: {x,y}, color: '#rrggbb' }
   const [players, setPlayers] = useState({});
@@ -38,6 +39,7 @@ function GameCanvas({ username }) {
   const [grid, setGrid] = useState({});
   // key = 'x,y' → { username, color }
   const [leaderboard, setLeaderboard] = useState([]);
+  const [playerStats, setPlayerStats] = useState(null);
 
   // Add achievements state
   const [achievements, setAchievements] = useState({
@@ -51,6 +53,7 @@ function GameCanvas({ username }) {
 
   const containerRef = useRef(null);
   const [gridSize, setGridSize] = useState(20);
+  const statsIntervalRef = useRef(null);
 
   const WORLD_COLS = 100, WORLD_ROWS = 100;
   const VIEW_COLS  =  25, VIEW_ROWS  =  25;
@@ -77,6 +80,34 @@ function GameCanvas({ username }) {
 
   // 3) still catch rapid container‐box shrinks via ResizeObserver
   useResizeObserver(containerRef, recalcGridSize);
+
+  // Fetch player stats periodically
+  useEffect(() => {
+    if (!username || !isConnected) return;
+
+    const fetchPlayerStats = async () => {
+      try {
+        const response = await axios.get(`/api/game/player-stats?username=${username}`, {
+          withCredentials: true
+        });
+        setPlayerStats(response.data);
+      } catch (error) {
+        console.error('Error fetching player stats:', error);
+      }
+    };
+
+    // Fetch immediately on connection
+    fetchPlayerStats();
+    
+    // Then fetch every 30 seconds
+    statsIntervalRef.current = setInterval(fetchPlayerStats, 30000);
+    
+    return () => {
+      if (statsIntervalRef.current) {
+        clearInterval(statsIntervalRef.current);
+      }
+    };
+  }, [username, isConnected]);
 
   // helper function for leaderboard
   function recomputeLeaderboard(gridMap) {
@@ -137,7 +168,9 @@ function GameCanvas({ username }) {
 
     const loadAchievements = async () => {
       try {
-        const response = await fetch(`/api/game/achievements?username=${username}`);
+        const response = await fetch(`/api/game/achievements?username=${username}`, {
+          credentials: 'include'
+        });
         if (response.ok) {
           const data = await response.json();
           if (data.achievements) {
@@ -164,7 +197,8 @@ function GameCanvas({ username }) {
       path: '/socket.io',
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 5
+      reconnectionAttempts: 5,
+      withCredentials: true
     });
 
     setSocket(newSocket);
@@ -172,6 +206,10 @@ function GameCanvas({ username }) {
     // Cleanup on unmount
     return () => {
       newSocket.disconnect();
+      // Clear the stats interval on unmount
+      if (statsIntervalRef.current) {
+        clearInterval(statsIntervalRef.current);
+      }
     };
   }, []);
 
@@ -643,74 +681,99 @@ function GameCanvas({ username }) {
         />
       </div>
 
-      <div className="leaderboard">
-        <h3>Leaderboard</h3>
-        <ol>
-          {leaderboard.map(({user, count}) => (
-            <li
-              key={user}
-              style={{
-                fontWeight: user === username ? 'bold' : 'normal',
-                backgroundColor: user === username
-                  ? 'rgba(255,255,255,0.2)'
-                  : 'transparent',
-                padding: user === username ? '2px 4px' : undefined,
-                borderRadius: user === username ? '4px' : undefined
-              }}
-            >
-              <span style={{color: serverColors[user] || '#000'}}>
-                {user}
-              </span>: {count}
-            </li>
-          ))}
-        </ol>
+      <div className="sidebar">
+        <div className="leaderboard">
+          <h3>Leaderboard</h3>
+          <ol>
+            {leaderboard.map(({user, count}) => (
+              <li
+                key={user}
+                style={{
+                  fontWeight: user === username ? 'bold' : 'normal',
+                  backgroundColor: user === username
+                    ? 'rgba(255,255,255,0.2)'
+                    : 'transparent',
+                  padding: user === username ? '2px 4px' : undefined,
+                  borderRadius: user === username ? '4px' : undefined
+                }}
+              >
+                <span style={{color: serverColors[user] || '#000'}}>
+                  {user}
+                </span>: {count}
+              </li>
+            ))}
+          </ol>
 
-        {/* Achievements section */}
-        <div className="achievements">
-          <h3>
-            Achievements
-            {allAchievementsUnlocked && (
-              <span className="trophy" style={{
-                marginLeft: '8px',
-                color: 'gold',
-                fontSize: '1.2em',
-                textShadow: '0 0 5px rgba(255, 215, 0, 0.7)'
-              }}>
-                🏆
-              </span>
-            )}
-          </h3>
-          <AchievementItem
-            achieved={achievements.fiftyPoints}
-            text="Achieve 50 Points"
-          />
-          <AchievementItem
-            achieved={achievements.hundredPoints}
-            text="Achieve 100 Points"
-          />
-          <AchievementItem
-            achieved={achievements.twoHundredPoints}
-            text="Achieve 200 Points"
-          />
-
-          {/* Show congratulation message when all achievements are unlocked */}
-          {allAchievementsUnlocked && (
-            <div
-              className="all-achievements-unlocked"
-              style={{
-                marginTop: '10px',
-                padding: '5px',
-                backgroundColor: 'rgba(0,64,255,0.39)',
-                borderRadius: '5px',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                color: 'gold',
-                textShadow: '0 0 2px rgba(0, 0, 0, 0.5)'
-              }}
-            >
-              All Achievements Unlocked!
+          {/* Player Stats Section */}
+          {playerStats && (
+            <div className="player-stats-summary">
+              <h3>
+                <span className="stats-icon">📊</span> Your Stats
+              </h3>
+              <div className="stat-summary">
+                <div className="stat-item">
+                  <span className="stat-label">Games:</span>
+                  <span className="stat-value-small">{playerStats.games_played}</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">Best Score:</span>
+                  <span className="stat-value-small">{playerStats.max_score}</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">Avg Score:</span>
+                  <span className="stat-value-small">{Math.round(playerStats.average_score * 10) / 10}</span>
+                </div>
+              </div>
             </div>
           )}
+
+          {/* Achievements section */}
+          <div className="achievements">
+            <h3>
+              Achievements
+              {allAchievementsUnlocked && (
+                <span className="trophy" style={{
+                  marginLeft: '8px',
+                  color: 'gold',
+                  fontSize: '1.2em',
+                  textShadow: '0 0 5px rgba(255, 215, 0, 0.7)'
+                }}>
+                  🏆
+                </span>
+              )}
+            </h3>
+            <AchievementItem
+              achieved={achievements.fiftyPoints}
+              text="Achieve 50 Points"
+            />
+            <AchievementItem
+              achieved={achievements.hundredPoints}
+              text="Achieve 100 Points"
+            />
+            <AchievementItem
+              achieved={achievements.twoHundredPoints}
+              text="Achieve 200 Points"
+            />
+
+            {/* Show congratulation message when all achievements are unlocked */}
+            {allAchievementsUnlocked && (
+              <div
+                className="all-achievements-unlocked"
+                style={{
+                  marginTop: '10px',
+                  padding: '5px',
+                  backgroundColor: 'rgba(0,64,255,0.39)',
+                  borderRadius: '5px',
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  color: 'gold',
+                  textShadow: '0 0 2px rgba(0, 0, 0, 0.5)'
+                }}
+              >
+                All Achievements Unlocked!
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

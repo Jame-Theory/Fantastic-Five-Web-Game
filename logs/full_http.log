@@ -1,0 +1,2192 @@
+2025-05-05 04:49:15,968 POST /api/auth/login from 172.19.0.4 (user=anonymous) → 401
+Request Headers:
+Content-Type: application/json
+Content-Length: 47
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02
+
+Request Body:
+b'{"username":"testuser","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "error": "Invalid username"
+}
+
+
+2025-05-05 04:49:27,423 POST /api/auth/signup from 172.19.0.4 (user=yash2) → 201
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "User created successfully"
+}
+
+
+2025-05-05 04:49:27,838 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhDVw.gsD9fy5kPeWlICBUqq2LQwX0l4w
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 04:49:27,875 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhDVw.gsD9fy5kPeWlICBUqq2LQwX0l4w
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:01:37,858 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhDVw.gsD9fy5kPeWlICBUqq2LQwX0l4w
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:01:37,905 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhGMQ.Um24W4gMVdji6Es-rwWfsOaRXUk
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:03:02,489 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhGMQ.Um24W4gMVdji6Es-rwWfsOaRXUk
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:03:02,549 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhGhg.d0uiJHUacRrcRdsi6_1RtO7PDBI
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:07:19,403 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhGhg.d0uiJHUacRrcRdsi6_1RtO7PDBI
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:07:19,454 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhHhw.Kt8zZW5cWhnKG8pJT5KVHZmiHhc
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:09:30,969 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhHhw.Kt8zZW5cWhnKG8pJT5KVHZmiHhc
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:09:31,031 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhICg.zvhWWAKHbkFT76324F6zeV1oMKw
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:09:46,153 GET /api/game/stats from 172.19.0.4 (user=yash2) → 404
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhICg.zvhWWAKHbkFT76324F6zeV1oMKw
+
+Request Body:
+
+
+Response Body:
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+
+2025-05-05 05:11:15,552 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhICg.zvhWWAKHbkFT76324F6zeV1oMKw
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:11:15,630 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhIcw.ypofXM66omiKGzGdLyyO6nqSy9s
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:12:44,882 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhIcw.ypofXM66omiKGzGdLyyO6nqSy9s
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:12:44,944 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhIzA.eUmvzAOVA9UnqhwV49Phmh4It_c
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:15:14,169 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhIzA.eUmvzAOVA9UnqhwV49Phmh4It_c
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:15:14,235 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhJYg.3K5D8iywqXJWXdAVfHcs6q_CKj4
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:15:57,574 GET /api/auth/profile from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhJYg.3K5D8iywqXJWXdAVfHcs6q_CKj4
+
+Request Body:
+
+
+Response Body:
+{
+  "avatar": null
+}
+
+
+2025-05-05 05:16:04,013 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhJYg.3K5D8iywqXJWXdAVfHcs6q_CKj4
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:20:53,625 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhJYg.3K5D8iywqXJWXdAVfHcs6q_CKj4
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:20:53,703 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhKtQ.5NAWEhe5EiU6qhaGnrow5wvDq9s
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:24:24,803 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhKtQ.5NAWEhe5EiU6qhaGnrow5wvDq9s
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:24:24,864 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhLiA.plobhFR2Un6Z6DTdFYapEdxK1dU
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:31:42,028 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhLiA.plobhFR2Un6Z6DTdFYapEdxK1dU
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:31:42,129 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhNPg.CKGwN0jg-25KPORqLw0kad6bU0U
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:32:26,116 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhNPg.CKGwN0jg-25KPORqLw0kad6bU0U
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:32:26,183 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhNag.q34hmCixhvnrSRzYCy77YAyCd-Q
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:42:10,468 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhNag.q34hmCixhvnrSRzYCy77YAyCd-Q
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:42:10,609 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhPsg.iPsEQ7AyQ4kSZ812t9NhghoqrWg
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:42:43,031 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhPsg.iPsEQ7AyQ4kSZ812t9NhghoqrWg
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:42:43,092 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhP0w.mk_y1u2z2ij57HrqmqnuTo7dIqE
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 05:46:54,725 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhP0w.mk_y1u2z2ij57HrqmqnuTo7dIqE
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 05:46:54,789 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhQzg.cqiSn7ppL_oF-VuG0XVnsJtxe1k
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:28:35,903 GET /api/auth/check from 172.19.0.4 (user=yash2) → 404
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhQzg.cqiSn7ppL_oF-VuG0XVnsJtxe1k
+
+Request Body:
+
+
+Response Body:
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+
+2025-05-05 07:28:44,393 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhQzg.cqiSn7ppL_oF-VuG0XVnsJtxe1k
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 07:28:44,449 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:28:44,508 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 1.0,
+  "current_score": 2,
+  "games_played": 1,
+  "max_score": 1,
+  "min_score": 1,
+  "total_score": 1,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:28:49,851 GET /api/auth/profile from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "avatar": null
+}
+
+
+2025-05-05 07:28:51,776 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 9.5,
+  "current_score": 0,
+  "games_played": 2,
+  "max_score": 18,
+  "min_score": 1,
+  "total_score": 19,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:28:51,794 GET /api/game/leaderboard from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "leaderboard": [
+    {
+      "average_score": 9.5,
+      "games_played": 2,
+      "max_score": 18,
+      "username": "yash2"
+    }
+  ]
+}
+
+
+2025-05-05 07:28:52,525 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 9.5,
+  "current_score": 0,
+  "games_played": 2,
+  "max_score": 18,
+  "min_score": 1,
+  "total_score": 19,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:28:52,531 GET /api/game/leaderboard from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "leaderboard": [
+    {
+      "average_score": 9.5,
+      "games_played": 2,
+      "max_score": 18,
+      "username": "yash2"
+    }
+  ]
+}
+
+
+2025-05-05 07:28:53,875 GET /api/game/leaderboard from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "leaderboard": [
+    {
+      "average_score": 9.5,
+      "games_played": 2,
+      "max_score": 18,
+      "username": "yash2"
+    }
+  ]
+}
+
+
+2025-05-05 07:28:53,880 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 9.5,
+  "current_score": 0,
+  "games_played": 2,
+  "max_score": 18,
+  "min_score": 1,
+  "total_score": 19,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:28:56,545 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:28:56,561 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 9.5,
+  "current_score": 19,
+  "games_played": 2,
+  "max_score": 18,
+  "min_score": 1,
+  "total_score": 19,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:28:58,853 GET /api/auth/check from 172.19.0.4 (user=yash2) → 404
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+
+
+Response Body:
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+
+2025-05-05 07:29:07,819 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhorA.I9fo2ombhmM09xH3vEwY_6jwwIw
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:07,871 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhoww.LKeqyAcKAqRh9Riso_Y281vsz4E
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:29:07,931 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhoww.LKeqyAcKAqRh9Riso_Y281vsz4E
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 12.666666666666666,
+  "current_score": 20,
+  "games_played": 3,
+  "max_score": 19,
+  "min_score": 1,
+  "total_score": 38,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:15,633 GET /api/auth/check from 172.19.0.4 (user=yash2) → 404
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhoww.LKeqyAcKAqRh9Riso_Y281vsz4E
+
+Request Body:
+
+
+Response Body:
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+
+2025-05-05 07:29:19,634 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhoww.LKeqyAcKAqRh9Riso_Y281vsz4E
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:19,685 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhozw.fsumKM77nWnFD9-gy1MQV1NQW-M
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:29:19,733 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhozw.fsumKM77nWnFD9-gy1MQV1NQW-M
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 26.25,
+  "current_score": 68,
+  "games_played": 4,
+  "max_score": 67,
+  "min_score": 1,
+  "total_score": 105,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:30,823 GET /api/auth/check from 172.19.0.4 (user=yash2) → 404
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhozw.fsumKM77nWnFD9-gy1MQV1NQW-M
+
+Request Body:
+
+
+Response Body:
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+
+2025-05-05 07:29:34,091 POST /api/auth/login from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBhozw.fsumKM77nWnFD9-gy1MQV1NQW-M
+
+Request Body:
+b'{"username":"yash2","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:34,134 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:29:34,184 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 47.6,
+  "current_score": 134,
+  "games_played": 5,
+  "max_score": 133,
+  "min_score": 1,
+  "total_score": 238,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:36,056 GET /api/auth/profile from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "avatar": null
+}
+
+
+2025-05-05 07:29:37,291 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 62.0,
+  "current_score": 0,
+  "games_played": 6,
+  "max_score": 134,
+  "min_score": 1,
+  "total_score": 372,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:37,296 GET /api/game/leaderboard from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "leaderboard": [
+    {
+      "average_score": 62.0,
+      "games_played": 6,
+      "max_score": 134,
+      "username": "yash2"
+    }
+  ]
+}
+
+
+2025-05-05 07:29:41,828 GET /api/game/leaderboard from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "leaderboard": [
+    {
+      "average_score": 62.0,
+      "games_played": 6,
+      "max_score": 134,
+      "username": "yash2"
+    }
+  ]
+}
+
+
+2025-05-05 07:29:41,836 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 62.0,
+  "current_score": 0,
+  "games_played": 6,
+  "max_score": 134,
+  "min_score": 1,
+  "total_score": 372,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:44,902 GET /api/game/achievements from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 07:29:44,967 GET /api/game/player-stats from 172.19.0.4 (user=yash2) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+{
+  "average_score": 62.0,
+  "current_score": 135,
+  "games_played": 6,
+  "max_score": 134,
+  "min_score": 1,
+  "total_score": 372,
+  "username": "yash2"
+}
+
+
+2025-05-05 07:29:58,632 GET /api/auth/check from 172.19.0.4 (user=yash2) → 404
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 192.168.65.1
+Sec-Ch-Ua-Platform: "macOS"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: Pycharm-4ed79100=e136154a-a130-4b06-99c8-0e23b1f62f02; session=eyJ1c2VybmFtZSI6Inlhc2gyIn0.aBho3g.DLeXDvJvZhRIdBCRNdwdlEgN_Jc
+
+Request Body:
+
+
+Response Body:
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+

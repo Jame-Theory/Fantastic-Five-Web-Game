@@ -1,0 +1,157 @@
+2025-05-05 04:49:15,924 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-05 04:49:15,930 [INFO] 172.19.0.4 POST /api/auth/login anonymous
+2025-05-05 04:49:15,965 [INFO] user attempted to login up, but username does not exist
+2025-05-05 04:49:26,987 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-05 04:49:26,989 [INFO] 172.19.0.4 POST /api/auth/signup anonymous
+2025-05-05 04:49:27,422 [INFO] yash2 successfully signed up
+2025-05-05 04:49:27,446 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 04:49:27,446 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 04:49:27,837 [INFO] yash2 successfully logged in
+2025-05-05 04:49:27,871 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 04:49:27,872 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:01:37,413 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:01:37,418 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:01:37,856 [INFO] yash2 successfully logged in
+2025-05-05 05:01:37,897 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:01:37,899 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:03:02,085 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:03:02,087 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:03:02,488 [INFO] yash2 successfully logged in
+2025-05-05 05:03:02,548 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:03:02,548 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:07:18,995 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:07:19,000 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:07:19,401 [INFO] yash2 successfully logged in
+2025-05-05 05:07:19,453 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:07:19,453 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:09:30,564 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:09:30,566 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:09:30,967 [INFO] yash2 successfully logged in
+2025-05-05 05:09:31,029 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:09:31,029 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:09:46,151 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:09:46,152 [INFO] 172.19.0.4 GET /api/game/stats yash2
+2025-05-05 05:11:15,123 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:11:15,125 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:11:15,550 [INFO] yash2 successfully logged in
+2025-05-05 05:11:15,621 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:11:15,622 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:12:44,455 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:12:44,457 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:12:44,880 [INFO] yash2 successfully logged in
+2025-05-05 05:12:44,942 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:12:44,942 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:15:13,715 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:15:13,721 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:15:14,168 [INFO] yash2 successfully logged in
+2025-05-05 05:15:14,233 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:15:14,233 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:15:57,564 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:15:57,565 [INFO] 172.19.0.4 GET /api/auth/profile yash2
+2025-05-05 05:16:03,992 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:16:03,993 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:20:53,209 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:20:53,211 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:20:53,623 [INFO] yash2 successfully logged in
+2025-05-05 05:20:53,701 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:20:53,702 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:24:24,401 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:24:24,403 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:24:24,802 [INFO] yash2 successfully logged in
+2025-05-05 05:24:24,862 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:24:24,862 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:31:41,611 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:31:41,617 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:31:42,027 [INFO] yash2 successfully logged in
+2025-05-05 05:31:42,122 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:31:42,123 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:32:25,663 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:32:25,667 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:32:26,115 [INFO] yash2 successfully logged in
+2025-05-05 05:32:26,176 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:32:26,178 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:42:10,030 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:42:10,033 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:42:10,465 [INFO] yash2 successfully logged in
+2025-05-05 05:42:10,605 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:42:10,605 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:42:42,623 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:42:42,625 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:42:43,028 [INFO] yash2 successfully logged in
+2025-05-05 05:42:43,088 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:42:43,088 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 05:46:54,291 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:46:54,300 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 05:46:54,723 [INFO] yash2 successfully logged in
+2025-05-05 05:46:54,786 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 05:46:54,787 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:28:35,897 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:35,900 [INFO] 172.19.0.4 GET /api/auth/check yash2
+2025-05-05 07:28:43,989 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:43,991 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 07:28:44,388 [INFO] yash2 successfully logged in
+2025-05-05 07:28:44,447 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:44,447 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:28:44,506 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:44,506 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:28:49,849 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:49,849 [INFO] 172.19.0.4 GET /api/auth/profile yash2
+2025-05-05 07:28:51,774 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:51,775 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:28:51,780 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:51,781 [INFO] 172.19.0.4 GET /api/game/leaderboard yash2
+2025-05-05 07:28:52,523 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:52,523 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:28:52,527 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:52,528 [INFO] 172.19.0.4 GET /api/game/leaderboard yash2
+2025-05-05 07:28:53,872 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:53,873 [INFO] 172.19.0.4 GET /api/game/leaderboard yash2
+2025-05-05 07:28:53,876 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:53,877 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:28:56,543 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:56,544 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:28:56,559 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:56,559 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:28:58,851 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:28:58,852 [INFO] 172.19.0.4 GET /api/auth/check yash2
+2025-05-05 07:29:07,403 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:07,404 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 07:29:07,818 [INFO] yash2 successfully logged in
+2025-05-05 07:29:07,865 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:07,866 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:29:07,929 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:07,930 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:29:15,630 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:15,631 [INFO] 172.19.0.4 GET /api/auth/check yash2
+2025-05-05 07:29:19,240 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:19,241 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 07:29:19,632 [INFO] yash2 successfully logged in
+2025-05-05 07:29:19,683 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:19,683 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:29:19,732 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:19,732 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:29:30,819 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:30,820 [INFO] 172.19.0.4 GET /api/auth/check yash2
+2025-05-05 07:29:33,693 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:33,693 [INFO] 172.19.0.4 POST /api/auth/login yash2
+2025-05-05 07:29:34,090 [INFO] yash2 successfully logged in
+2025-05-05 07:29:34,132 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:34,133 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:29:34,182 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:34,182 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:29:36,054 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:36,054 [INFO] 172.19.0.4 GET /api/auth/profile yash2
+2025-05-05 07:29:37,289 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:37,289 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:29:37,293 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:37,294 [INFO] 172.19.0.4 GET /api/game/leaderboard yash2
+2025-05-05 07:29:41,825 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:41,826 [INFO] 172.19.0.4 GET /api/game/leaderboard yash2
+2025-05-05 07:29:41,831 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:41,832 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:29:44,900 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:44,900 [INFO] 172.19.0.4 GET /api/game/achievements yash2
+2025-05-05 07:29:44,965 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:44,965 [INFO] 172.19.0.4 GET /api/game/player-stats yash2
+2025-05-05 07:29:58,627 [INFO] <SecureCookieSession {'username': 'yash2'}> - poiuytrewq
+2025-05-05 07:29:58,628 [INFO] 172.19.0.4 GET /api/auth/check yash2

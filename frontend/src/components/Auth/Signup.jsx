@@ -28,29 +28,17 @@ function Signup({ setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
-    // Check if all password requirements are met
-    const allChecksPassed = Object.values(passwordChecks).every(Boolean);
-    if (!allChecksPassed) {
-      setError('Password does not meet all requirements');
-      return;
-    }
-
     setIsLoading(true);
 
     try {
-      await axios.post('/api/auth/signup', {
+      const response = await axios.post('/api/auth/signup', {
         username,
         password
+      }, {
+        withCredentials: true
       });
 
-      // Auto-login after successful signup
-      const loginResponse = await axios.post('/api/auth/login', {
-        username,
-        password
-      });
-
-      setUser({ username: loginResponse.data.username });
+      setUser({ username });
     } catch (err) {
       setError(err.response?.data?.error || 'Signup failed');
     } finally {
@@ -93,6 +81,7 @@ function Signup({ setUser }) {
             onChange={(e) => setPassword(e.target.value)}
             required
             disabled={isLoading}
+            placeholder="Min 8 chars with uppercase, lowercase & special character"
           />
           <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
             <ValidationIndicator

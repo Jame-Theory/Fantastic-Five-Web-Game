@@ -5,7 +5,7 @@ from flask_socketio import emit, join_room, leave_room
 # from app import socketio
 from extensions import socketio
 
-from db import users_collection
+from db import users_collection, player_collection
 
 import random
 
@@ -65,10 +65,57 @@ def handle_disconnect():
     # if no more tabs for this user, fully remove them
     if not user_sids[user]:
         room = players[user]['room']
+        # Save game stats before player fully disconnects
+        update_player_stats(user)
         players.pop(user, None)
         user_sids.pop(user, None)
         emit('player_left', {'username': user}, room=room)
         # print(f"{user} left room {room} (all tabs closed)")
+
+
+def update_player_stats(username):
+    """Update player statistics when a game session ends"""
+    # Count cells owned by this player as their score
+    current_score = sum(1 for owner in grid_owner.values() if owner == username)
+    
+    # Get existing stats or create default ones
+    player_stats = player_collection.find_one({"username": username}) or {
+        "username": username,
+        "games_played": 0,
+        "max_score": 0,
+        "min_score": float('inf'),
+        "total_score": 0,
+        "average_score": 0
+    }
+    
+    # Update stats
+    games_played = player_stats.get("games_played", 0) + 1
+    total_score = player_stats.get("total_score", 0) + current_score
+    max_score = max(player_stats.get("max_score", 0), current_score)
+    
+    # Handle min_score, ensuring it's not float('inf') in the database
+    old_min = player_stats.get("min_score", float('inf'))
+    if old_min == float('inf'):
+        min_score = current_score
+    else:
+        min_score = min(old_min, current_score)
+    
+    # Calculate average
+    average_score = total_score / games_played if games_played > 0 else 0
+    
+    # Update in database
+    player_collection.update_one(
+        {"username": username},
+        {"$set": {
+            "username": username,
+            "games_played": games_played,
+            "max_score": max_score,
+            "min_score": min_score,
+            "total_score": total_score,
+            "average_score": average_score
+        }},
+        upsert=True
+    )
 
 
 @socketio.on('join_game')
@@ -268,5 +315,57 @@ def get_achievements():
         )
 
     return jsonify({"achievements": achievements}), 200
+
+
+@game_bp.route('/player-stats', methods=['GET'])
+def get_player_stats():
+    """Get the statistics for a player."""
+    username = request.args.get('username')
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+
+    # For currently active players, calculate their current score
+    current_score = 0
+    if username in players:
+        current_score = sum(1 for owner in grid_owner.values() if owner == username)
+
+    # Get stored player stats from database
+    player_stats = player_collection.find_one({"username": username})
+    
+    if not player_stats:
+        # Return default stats if player has no history
+        return jsonify({
+            "username": username,
+            "games_played": 0,
+            "max_score": current_score,
+            "min_score": current_score if current_score > 0 else 0,
+            "total_score": current_score,
+            "average_score": current_score,
+            "current_score": current_score
+        }), 200
+    
+    # Add the current score to the response 
+    player_stats["current_score"] = current_score
+    
+    # Remove MongoDB _id from the response
+    if "_id" in player_stats:
+        del player_stats["_id"]
+        
+    return jsonify(player_stats), 200
+
+
+# Add a endpoint to get leaderboard
+@game_bp.route('/leaderboard', methods=['GET'])
+def get_leaderboard():
+    """Get the top players by max score."""
+    limit = int(request.args.get('limit', 10))
+    
+    # Query the database for players sorted by max_score
+    top_players = list(player_collection.find(
+        {},
+        {"username": 1, "max_score": 1, "games_played": 1, "average_score": 1, "_id": 0}
+    ).sort("max_score", -1).limit(limit))
+    
+    return jsonify({"leaderboard": top_players}), 200
 
 # added achievements functionality here.
