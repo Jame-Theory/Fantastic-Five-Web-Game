@@ -1,5 +1,7 @@
 # backend/auth/routes.py
-from flask import Blueprint, request, jsonify
+import logging
+
+from flask import Blueprint, request, jsonify, session
 import bcrypt
 import os
 import datetime
@@ -16,21 +18,30 @@ def signup():
     password = data.get('password')
 
     # Validate input
-    if not username or not password:
-        return jsonify({"error": "Username and password are required"}), 400
+    if not username:
+        logging.info('user attempted to sign up, but username required')
+        return jsonify({"error": "Username is required"}), 400
+    if not password:
+        logging.info('user attempted to sign up, but password required')
+        return jsonify({"error": "Password is required"}), 400
 
     # Password validation
     if len(password) < 8:
+        logging.info('user attempted to sign up, but password too short')
         return jsonify({"error": "Password must be at least 8 characters"}), 400
     if not any(c.isupper() for c in password):
+        logging.info('user attempted to sign up, but user attempted to sign up, but password must contain uppercase letters')
         return jsonify({"error": "Password must contain at least one uppercase letter"}), 400
     if not any(c.islower() for c in password):
+        logging.info('user attempted to sign up, but password must contain lowercase letters')
         return jsonify({"error": "Password must contain at least one lowercase letter"}), 400
     if not any(c in '!@#$%^&*(),.?":{}|<>' for c in password):
+        logging.info('user attempted to sign up, but password must contain special characters')
         return jsonify({"error": "Password must contain at least one special character"}), 400
 
     # Check if username already exists
     if users_collection.find_one({"username": username}):
+        logging.info('user attempted to sign up, but username already exists')
         return jsonify({"error": "Username already exists"}), 409
 
     # Hash password
@@ -44,7 +55,8 @@ def signup():
     }
 
     users_collection.insert_one(user)
-
+    logging.info(f'{username} successfully signed up')
+    session['username'] = username
     return jsonify({"message": "User created successfully"}), 201
 
 
@@ -57,9 +69,15 @@ def login():
     # Find user
     user = users_collection.find_one({"username": username})
 
-    if not user or not bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
-        return jsonify({"error": "Invalid username or password"}), 401
+    if not user:
+        logging.info('user attempted to login up, but username does not exist')
+        return jsonify({"error": "Invalid username"}), 401
+    elif not bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+        logging.info(f'{user.get("username")} attempted to login, but password does not match')
+        return jsonify({"error": "Invalid password"}), 401
 
+    logging.info(f'{user.get("username")} successfully logged in')
+    session['username'] = username
     return jsonify({
         "message": "Login successful",
         "username": username

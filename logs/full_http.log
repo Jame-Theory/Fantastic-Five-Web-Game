@@ -1,0 +1,330 @@
+2025-05-05 02:51:03,299 POST /api/auth/login from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: session=b82bad30; auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+{'username': 'hello', 'password': '[REDACTED]'}
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "hello"
+}
+
+
+2025-05-05 02:51:03,359 GET /api/game/achievements from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBgnlw.EobOZ1mFHEjP9ZX9antFn_EWl9A
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 03:06:22,828 POST /api/auth/login from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBgnlw.EobOZ1mFHEjP9ZX9antFn_EWl9A
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+b'{"username":"hello","password":"[REDACTED]"}'
+
+Response Body:
+b'{
+  "message": "Login successful",
+  "username": "hello"
+}
+'
+
+2025-05-05 03:06:22,935 GET /api/game/achievements from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBgrLg.vMiHaZ7ulrsXDF275mtZDWkYmaw
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+b''
+
+Response Body:
+b'{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+'
+
+Final Test-full_http2025-05-05 03:39:47,406 POST /api/auth/login from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBguuQ.5AwVlTjjCyeOhaVaPavftZwIp8o
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+b'{"username":"hello","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "hello"
+}
+
+
+2025-05-05 03:39:47,440 GET /api/game/achievements from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBgzAw.8txKTHLkTqLSUaHpeMjoy2m5Fng
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 03:44:53,147 POST /api/auth/login from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBgzAw.8txKTHLkTqLSUaHpeMjoy2m5Fng
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+b'{"username":"hello","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "hello"
+}
+
+
+2025-05-05 03:44:53,183 GET /api/game/achievements from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=1dd9ef75-c3f7-45a9-ad43-a1975e584111; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBg0NQ.MhSxtUlKtv735RjbNV3i-GqTEKg
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+
+2025-05-05 03:50:29,698 POST /api/auth/login from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: application/json
+Content-Length: 42
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:8080
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=[REDACTED]; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBg0NQ.MhSxtUlKtv735RjbNV3i-GqTEKg
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+b'{"username":"hello","password":"[REDACTED]"}'
+
+Response Body:
+{
+  "message": "Login successful",
+  "username": "hello"
+}
+
+
+2025-05-05 03:50:29,731 GET /api/game/achievements from 172.18.0.4 (user=hello) → 200
+Request Headers:
+Content-Type: text/plain
+Host: localhost
+X-Real-Ip: 172.18.0.1
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Sec-Ch-Ua: "Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:8080/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cookie: auth_token=[REDACTED]; session=eyJ1c2VybmFtZSI6ImhlbGxvIn0.aBg1hQ.m9-2az3LEG0cVMbgzWdOeJ9oca4
+Dnt: 1
+Sec-Gpc: 1
+
+Request Body:
+
+
+Response Body:
+{
+  "achievements": {
+    "allUnlocked": false,
+    "fiftyPoints": false,
+    "hundredPoints": false,
+    "twoHundredPoints": false
+  }
+}
+
+

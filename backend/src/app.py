@@ -11,7 +11,7 @@ import os
 import traceback
 
 from datetime import datetime
-from log_path import setup_loggers
+from log_path import setup_loggers, log_safe_http
 from test_bp import test
 from auth.routes import auth_bp
 from game.routes import game_bp
@@ -70,14 +70,12 @@ def create_app():
         method = request.method
         path = request.path
         username = session.get("username", "anonymous")
+        logging.info(f"{session} - poiuytrewq")
         logging.info(f"{ip} {method} {path} {username}")
 
     @app.after_request
     def after_log(response):
-        ip = request.remote_addr
-        code = response.status_code
-        logging.info(f"server responded to {ip} with {code}")
-        # log_safe_http(request, response)
+        log_safe_http(request, response)
         return response
 
     return app

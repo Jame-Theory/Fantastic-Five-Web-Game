@@ -4366,3 +4366,146 @@ AttributeError: 'NoneType' object has no attribute 'headers'
 2025-05-04 16:40:51,173 [INFO] server responded to 172.18.0.4 with 200
 2025-05-04 16:40:51,192 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
 2025-05-04 16:40:51,193 [INFO] server responded to 172.18.0.4 with 200
+2025-05-04 23:04:17,703 [INFO] 172.18.0.3 POST /api/auth/signup anonymous
+2025-05-04 23:04:18,078 [INFO] server responded to 172.18.0.3 with 201
+2025-05-04 23:04:18,128 [INFO] 172.18.0.3 POST /api/auth/login anonymous
+2025-05-04 23:04:18,475 [INFO] server responded to 172.18.0.3 with 200
+2025-05-04 23:08:09,560 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 23:08:09,926 [INFO] Name successfully signed up
+2025-05-04 23:08:09,980 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 23:08:10,325 [INFO] {'_id': ObjectId('6817f3594309927de9b7c1cb'), 'username': 'Name', 'password': '$2b$12$/CgjyZQTEGULrOYgqAQv5uLXx/TS2B2vuGyd1XpxcKfPoVmp1nEEe', 'created_at': datetime.datetime(2025, 5, 4, 23, 8, 9, 924000)} successfully logged in
+2025-05-04 23:08:10,351 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 23:28:03,740 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 23:28:04,109 [INFO] hello successfully signed up
+2025-05-04 23:28:04,172 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 23:28:04,543 [INFO] {'_id': ObjectId('6817f804c6c0f824f52e5ba4'), 'username': 'hello', 'password': '$2b$12$/VDQ9I4HCDoXGJmgJiD.zOmG.eFCwKAFfLPAL5kuSooOMapIY2CDS', 'created_at': datetime.datetime(2025, 5, 4, 23, 28, 4, 107000)} successfully logged in
+2025-05-04 23:28:04,569 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-04 23:32:17,968 [INFO] <Request 'http://localhost/api/auth/signup' [POST]> - qwertyuiop
+2025-05-04 23:32:17,969 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:32:17,970 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 23:32:18,333 [INFO] q successfully signed up
+2025-05-04 23:32:18,381 [INFO] <Request 'http://localhost/api/auth/login' [POST]> - qwertyuiop
+2025-05-04 23:32:18,382 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:32:18,383 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 23:32:18,724 [INFO] {'_id': ObjectId('6817f9028b3ced4ea5d7e736'), 'username': 'q', 'password': '$2b$12$9C3eKnZD638g4SzAFRcZdOmWZRnWHZu7TY6obIdCnsqFZjeQ1uYKW', 'created_at': datetime.datetime(2025, 5, 4, 23, 32, 18, 328000)} successfully logged in
+2025-05-04 23:32:18,750 [INFO] <Request 'http://localhost/api/game/achievements?username=q' [GET]> - qwertyuiop
+2025-05-04 23:32:18,750 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:32:18,751 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+#1111111111111111111111111111111111111111111111111111
+
+2025-05-04 23:58:25,420 [INFO] b'{"username":"hello","password":"Hello1__"}' - qwertyuiop
+2025-05-04 23:58:25,421 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:58:25,422 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 23:58:25,782 [INFO] {'_id': ObjectId('6817f804c6c0f824f52e5ba4'), 'username': 'hello', 'password': '$2b$12$/VDQ9I4HCDoXGJmgJiD.zOmG.eFCwKAFfLPAL5kuSooOMapIY2CDS', 'created_at': datetime.datetime(2025, 5, 4, 23, 28, 4, 107000)} attempted to login, but password does not match
+2025-05-04 23:58:39,343 [INFO] b'{"username":"hello","password":"Hello!!!"}' - qwertyuiop
+2025-05-04 23:58:39,344 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:58:39,347 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-04 23:58:39,351 [INFO] user attempted to sign up, but username already exists
+2025-05-04 23:58:54,126 [INFO] b'{"username":"hello","password":"Hello!!!"}' - qwertyuiop
+2025-05-04 23:58:54,127 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:58:54,128 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-04 23:58:54,470 [INFO] None successfully logged in
+2025-05-04 23:58:54,510 [INFO] b'' - qwertyuiop
+2025-05-04 23:58:54,513 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-04 23:58:54,516 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-05 00:07:55,572 [INFO] b'{"username":"treycimi","password":"Password1_!"}' - qwertyuiop
+2025-05-05 00:07:55,573 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-05 00:07:55,576 [INFO] 172.18.0.4 POST /api/auth/signup anonymous
+2025-05-05 00:07:55,927 [INFO] treycimi successfully signed up
+2025-05-05 00:07:55,997 [INFO] b'{"username":"treycimi","password":"Password1_!"}' - qwertyuiop
+2025-05-05 00:07:55,998 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-05 00:07:56,030 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-05 00:07:56,378 [INFO] None successfully logged in
+2025-05-05 00:07:56,411 [INFO] b'' - qwertyuiop
+2025-05-05 00:07:56,416 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-05 00:07:56,421 [INFO] 172.18.0.4 GET /api/game/achievements anonymous
+2025-05-05 02:51:02,926 [INFO] <SecureCookieSession {}> - poiuytrewq
+2025-05-05 02:51:02,935 [INFO] 172.18.0.4 POST /api/auth/login anonymous
+2025-05-05 02:51:03,298 [INFO] hello successfully logged in
+2025-05-05 02:51:03,299 [INFO] server responded to 172.18.0.4-hello with 200
+2025-05-05 02:51:03,352 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 02:51:03,355 [INFO] 172.18.0.4 GET /api/game/achievements hello
+2025-05-05 02:51:03,358 [INFO] server responded to 172.18.0.4-hello with 200
+2025-05-05 03:06:22,456 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:06:22,457 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:06:22,826 [INFO] hello successfully logged in
+2025-05-05 03:06:22,928 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:06:22,931 [INFO] 172.18.0.4 GET /api/game/achievements hello
+Final Test-server2025-05-05 03:31:41,814 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:31:41,814 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:31:41,992 [INFO] hello successfully logged in
+2025-05-05 03:31:55,215 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:31:55,216 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:31:55,403 [INFO] hello successfully logged in
+2025-05-05 03:31:59,767 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:31:59,767 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:31:59,947 [INFO] hello successfully logged in
+2025-05-05 03:32:15,211 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:15,212 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:15,404 [INFO] graah successfully signed up
+2025-05-05 03:32:29,327 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:29,328 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:29,330 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:29,927 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:29,928 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:29,929 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:30,147 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:30,147 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:30,149 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:30,330 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:30,331 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:30,333 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:30,472 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:30,474 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:30,476 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:30,640 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:30,640 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:30,642 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:30,800 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:30,800 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:30,802 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:30,962 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:30,963 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:30,964 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:31,104 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:31,105 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:31,111 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:31,282 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:31,282 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:31,284 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:31,439 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:31,440 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:31,441 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:31,616 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:31,616 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:31,618 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:31,789 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:31,791 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:31,794 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:31,956 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:31,957 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:31,960 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:32,127 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:32,128 [INFO] 172.18.0.4 POST /api/auth/signup hello
+2025-05-05 03:32:32,129 [INFO] user attempted to sign up, but username already exists
+2025-05-05 03:32:46,595 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:46,596 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:32:46,767 [INFO] graah attempted to login, but password does not match
+2025-05-05 03:32:49,731 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:32:49,732 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:32:49,915 [INFO] graah successfully logged in
+2025-05-05 03:39:47,223 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:39:47,224 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:39:47,404 [INFO] hello successfully logged in
+2025-05-05 03:39:47,438 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:39:47,438 [INFO] 172.18.0.4 GET /api/game/achievements hello
+2025-05-05 03:44:52,967 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:44:52,969 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:44:53,146 [INFO] hello successfully logged in
+2025-05-05 03:44:53,180 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:44:53,181 [INFO] 172.18.0.4 GET /api/game/achievements hello
+2025-05-05 03:50:29,520 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:50:29,521 [INFO] 172.18.0.4 POST /api/auth/login hello
+2025-05-05 03:50:29,697 [INFO] hello successfully logged in
+2025-05-05 03:50:29,729 [INFO] <SecureCookieSession {'username': 'hello'}> - poiuytrewq
+2025-05-05 03:50:29,730 [INFO] 172.18.0.4 GET /api/game/achievements hello
