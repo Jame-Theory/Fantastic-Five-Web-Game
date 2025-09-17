@@ -70,7 +70,6 @@ def create_app():
         method = request.method
         path = request.path
         username = session.get("username", "anonymous")
-        logging.info(f"{session} - poiuytrewq")
         logging.info(f"{ip} {method} {path} {username}")
 
     @app.after_request

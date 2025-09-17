@@ -88,7 +88,6 @@ def login():
 # FOR AVATARS
 
 import io, base64, time
-from PIL import Image
 from flask import current_app, url_for
 from werkzeug.utils import secure_filename
 from game.routes import players
